@@ -7,4 +7,31 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Model\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Model\**" />
+    <Page Remove="Model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataLayer\Configuration\" />
+    <Folder Include="DataLayer\Enums\" />
+    <Folder Include="DataLayer\Models\" />
+    <Folder Include="DataLayer\Repository\" />
+    <Folder Include="DataLayer\Singleton\" />
+    <Folder Include="Helpers\Validation\" />
+    <Folder Include="ViewModels\Admin\" />
+    <Folder Include="Views\Admin\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="MaterialDesignThemes.Wpf" Version="1.0.1" />
+  </ItemGroup>
+
 </Project>

@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Personal_Nutritionist"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:views="clr-namespace:Personal_Nutritionist.Views.User"
+        xmlns:viewmodels="clr-namespace:Personal_Nutritionist.ViewModels"
+        Title="Personal Nutritionist" FontFamily="Comic Sans MS" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Height="450" Width="800">
     <Grid>
-
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:UserHomeViewModel}">
+                <views:UserHomePage/>
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content= "{Binding CurrentViewModel}"/>
     </Grid>
 </Window>
