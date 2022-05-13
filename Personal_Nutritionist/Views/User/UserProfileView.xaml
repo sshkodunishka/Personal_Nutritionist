@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Personal_Nutritionist.Views.User"
-             
+             xmlns:valid="clr-namespace:Personal_Nutritionist.Helpers.Validation"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" MinWidth="600">
     <Grid>
@@ -14,14 +14,18 @@
                 <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
-        <TextBlock Text="Today" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+        <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Text="Today" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel VerticalAlignment="Center" Margin="20,0,0,0" Width="200">
                 <TextBox x:Name="emailTextBox" materialDesign:HintAssist.Hint="Email" 
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                             FontSize="12">
+                             FontSize="12" Cursor="Arrow">
                     <TextBox.Text>
-                        Hello
+                        <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <valid:NotEmptyFieldRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
                     </TextBox.Text>
                 </TextBox>
             </StackPanel>

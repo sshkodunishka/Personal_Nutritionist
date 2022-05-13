@@ -20,7 +20,6 @@
     <Folder Include="DataLayer\Models\" />
     <Folder Include="DataLayer\Repository\" />
     <Folder Include="DataLayer\Singleton\" />
-    <Folder Include="Helpers\Validation\" />
     <Folder Include="ViewModels\Admin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
