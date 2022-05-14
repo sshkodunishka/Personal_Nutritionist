@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Personal_Nutritionist.Views
 {
     /// <summary>
-    /// Логика взаимодействия для UserHomePage.xaml
+    /// Логика взаимодействия для LoginView.xaml
     /// </summary>
-    public partial class UserHomePage : UserControl
+    public partial class LoginView : UserControl
     {
-        public UserHomePage()
+        public LoginView()
         {
             InitializeComponent();
         }

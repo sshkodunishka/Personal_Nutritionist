@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Personal_Nutritionist"
         mc:Ignorable="d"
-        xmlns:views="clr-namespace:Personal_Nutritionist.Views.User"
+        xmlns:views="clr-namespace:Personal_Nutritionist.Views"
         xmlns:viewmodels="clr-namespace:Personal_Nutritionist.ViewModels"
         Title="Personal Nutritionist" FontFamily="Comic Sans MS" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         Height="450" Width="800">
@@ -13,6 +13,9 @@
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:UserHomeViewModel}">
                 <views:UserHomePage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content= "{Binding CurrentViewModel}"/>
