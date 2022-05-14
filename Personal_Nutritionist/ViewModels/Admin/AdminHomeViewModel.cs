@@ -46,11 +46,6 @@ namespace Personal_Nutritionist.ViewModels
                     new PersonalNavigationService<AdminProductViewModel>(personalNavigationStore,
                     () => new AdminProductViewModel(personalNavigationStore)));
 
-               
-
-
-
-
                 LogOutCommand = new LogOutCommand( personalNavigationStore, navigationStore);
             }
             catch

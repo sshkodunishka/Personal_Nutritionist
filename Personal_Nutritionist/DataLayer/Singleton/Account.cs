@@ -11,11 +11,11 @@ namespace Personal_Nutritionist.DataLayer
     {
         private static Account instance;
 
-        public User User { get; private set; }
+        public User CurrentUser { get; private set; }
 
         protected Account(User user)
         {
-            this.User = user;
+            this.CurrentUser = user;
         }
 
         public static Account getInstance(User user)
@@ -32,6 +32,8 @@ namespace Personal_Nutritionist.DataLayer
                 return null;
             }
         }
+
+
         public static void Dispose()
         {
             try

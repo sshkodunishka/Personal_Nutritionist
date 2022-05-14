@@ -29,15 +29,9 @@ namespace Personal_Nutritionist.DataLayer.Repository
 
         public IEnumerable<TEntity> Get()
         {
-            try
-            {
+           
                 return _dbSet.AsNoTracking().ToList();
-            }
-            catch
-            {
-                MessageBox.Show("Can't get something from repository");
-                return null;
-            }
+           
         }
 
         public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)

@@ -21,6 +21,10 @@ namespace Personal_Nutritionist.DataLayer
         public int RoleId { get; set; }
         public Role Role { get; set; }
 
+        ICollection<Product> Products { get; set; }
+        ICollection<Product> Resipes { get; set; }
+
+
         public User() { }
 
         public User(string login, string password, string name, string surname, int age, int roleId)
