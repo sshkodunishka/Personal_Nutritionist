@@ -67,7 +67,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,115" BorderBrush="#FCC67C" 
-                Background="#FCC67C" Foreground="Black">
+                Background="#FCC67C" Foreground="Black" Cursor="Hand">
             <Button.Style >
                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                     <Setter Property="IsEnabled" Value="False"/>

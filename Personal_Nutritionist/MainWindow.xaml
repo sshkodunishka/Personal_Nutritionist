@@ -13,9 +13,15 @@
         <Grid.Resources>
             <DataTemplate DataType="{x:Type viewmodels:UserHomeViewModel}">
                 <views:UserHomePage/>
+            </DataTemplate> 
+            <DataTemplate DataType="{x:Type viewmodels:AdminHomeViewModel}">
+                <views:AdminHomePage/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:RegistrationViewModel}">
+                <views:RegistrationView/>
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content= "{Binding CurrentViewModel}"/>

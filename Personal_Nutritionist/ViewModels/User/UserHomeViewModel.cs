@@ -46,7 +46,10 @@ namespace Personal_Nutritionist.ViewModels
                     new PersonalNavigationService<UserFavoriteViewModel>(personalNavigationStore,
                     () => new UserFavoriteViewModel(personalNavigationStore)));
 
-                //LogOutCommand = new LogOutCommand(this, personalNavigationStore, navigationStore);
+
+
+
+                LogOutCommand = new LogOutCommand( personalNavigationStore, navigationStore);
             }
             catch
             {

@@ -2,6 +2,7 @@
 using Personal_Nutritionist.DataLayer.Repository;
 using Personal_Nutritionist.Stores;
 using Personal_Nutritionist.ViewModels;
+using Personal_Nutritionist.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,8 +60,8 @@ namespace Personal_Nutritionist.Command
                             else
                             {
                                 //TODO: change me 
-                                _navigationStore.CurrentViewModel = new UserHomeViewModel(_personalNavigationStore, _navigationStore);
-                                _personalNavigationStore.CurrentPersonalViewModel = new UserProfileViewModel(_personalNavigationStore);
+                                _navigationStore.CurrentViewModel = new AdminHomeViewModel(_personalNavigationStore, _navigationStore);
+                                _personalNavigationStore.CurrentPersonalViewModel = new AdminProfileViewModel(_personalNavigationStore);
                             }
                         }
                         else

@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace Personal_Nutritionist.Views
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationView.xaml
+    /// Логика взаимодействия для AdminProductView.xaml
     /// </summary>
-    public partial class RegistrationView : UserControl
+    public partial class AdminProductView : UserControl
     {
-        public RegistrationView()
+        public AdminProductView()
         {
             InitializeComponent();
         }
-
-       
     }
 }

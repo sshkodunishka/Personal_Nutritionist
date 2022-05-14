@@ -23,7 +23,7 @@ namespace Personal_Nutritionist
 
             PersonalNavigationStore personalNavigationStore = new PersonalNavigationStore();
 
-            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore, personalNavigationStore);
+            navigationStore.CurrentViewModel = new UserHomeViewModel( personalNavigationStore, navigationStore);
 
             MainWindow = new MainWindow()
             {

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Tutorent.Views.RegistrationView"
+﻿<UserControl x:Class="Personal_Nutritionist.Views.RegistrationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -134,7 +134,7 @@
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=emailTextBox}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=loginTextBox}" Value="False"/>
                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=passwordBox}" Value="False"/>
                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=nameTextBox}" Value="False"/>
                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=surnameTextBox}" Value="False"/>
