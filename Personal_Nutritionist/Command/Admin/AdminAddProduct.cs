@@ -11,12 +11,12 @@ using System.Windows;
 
 namespace Personal_Nutritionist.Command
 {
-    public class AdminAddRecipe : CommandBase
+    public class AdminAddProduct : CommandBase
     {
-        private readonly AddRecipeViewModel _viewModel;
+        private readonly AdminAddProductViewModel _viewModel;
         private readonly PersonalNavigationStore _personalNavigationStore;
 
-        public AdminAddRecipe(AddRecipeViewModel viewModel, PersonalNavigationStore personalNavigationStore)
+        public AdminAddProduct(AdminAddProductViewModel viewModel, PersonalNavigationStore personalNavigationStore)
         {
             _viewModel = viewModel;
             _personalNavigationStore = personalNavigationStore;
@@ -26,7 +26,7 @@ namespace Personal_Nutritionist.Command
         {
             try
             {
-                if (_viewModel.Name != null && _viewModel.Calories != 0 && _viewModel.Description != null)
+                if (_viewModel.Name != null && _viewModel.Calories != 0 )
                     return true;
                 else
                     return false;
@@ -43,21 +43,20 @@ namespace Personal_Nutritionist.Command
             {
                 Context context = new Context();
                 Repository<User> repository = new Repository<User>(context);
-                Repository<Recipe> recipeRepository = new Repository<Recipe>(context);
+                Repository<Product> productRepository = new Repository<Product>(context);
 
                 User user = Account.getInstance(null).CurrentUser;
 
-                Recipe recipe = new Recipe(_viewModel.Name,
-                    _viewModel.Calories, _viewModel.Description, user.UserId);
-                recipeRepository.Create(recipe);
+                Product product = new Product(_viewModel.Name,
+                    _viewModel.Calories, user.UserId);
+                productRepository.Create(product);
 
-                _personalNavigationStore.CurrentPersonalViewModel = new AdminRecipeViewModel(_personalNavigationStore);
+                _personalNavigationStore.CurrentPersonalViewModel = new AdminProductViewModel(_personalNavigationStore);
             }
             catch
             {
                 MessageBox.Show("Can't add course");
             }
         }
-
     }
 }

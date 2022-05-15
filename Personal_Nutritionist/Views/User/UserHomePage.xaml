@@ -47,6 +47,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:UserFavoriteViewModel}">
                         <views:UserFavoriteView/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:UserAddProductViewModel}">
+                        <views:UserAddProductView/>
+                    </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content= "{Binding CurrentPersonalViewModel}"/>
             </Grid>

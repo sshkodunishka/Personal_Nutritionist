@@ -11,8 +11,10 @@ namespace Personal_Nutritionist.DataLayer
         public int ProductId { get; set; }
         public string Name { get; set; }
         public int Calories { get; set; }
-        public int UserId { get; set; }
+        public int UserId { get; set; } 
         public User User { get; set; }
+        public ICollection<RecipeProduct> RecipeProducts { get; set; }
+
 
         public Product() { }
 
