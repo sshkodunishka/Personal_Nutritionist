@@ -26,7 +26,8 @@
                 <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" Foreground="#4d5680" FontSize="16"/>
                 <!--<Image Source="../../Assets/training.png" Width="40" Height="40" VerticalAlignment="Top"/>-->
                 <StackPanel Margin="0,20">
-                    <Button Content="Профиль" Command="{Binding ProfileCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
+                    <Button Content="Профиль" Command="{Binding ProfileCommand}"
+                            Width="200" HorizontalAlignment="Center"  Background="#FCC67C" Foreground="Black"/>
                     <Button Content="Рецепты" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
                     <Button Content="Продукты" Command="{Binding ProductCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
                     <Button Content="Избранные" Command="{Binding FavoriteCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
@@ -49,6 +50,12 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:UserAddProductViewModel}">
                         <views:UserAddProductView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ChangeMealViewModel}">
+                        <views:UserChangeMealView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:AddMealRecipe}">
+                        <views:AddMealRecipe/>
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content= "{Binding CurrentPersonalViewModel}"/>

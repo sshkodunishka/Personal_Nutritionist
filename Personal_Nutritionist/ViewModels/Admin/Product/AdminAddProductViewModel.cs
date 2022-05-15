@@ -34,6 +34,8 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
+
+
         public ICommand AddProduct { get; }
 
         public AdminAddProductViewModel(PersonalNavigationStore personalNavigationStore)

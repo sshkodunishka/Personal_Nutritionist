@@ -29,9 +29,9 @@ namespace Personal_Nutritionist.DataLayer.Repository
 
         public IEnumerable<TEntity> Get()
         {
-           
-                return _dbSet.AsNoTracking().ToList();
-           
+
+            return _dbSet.AsNoTracking().ToList();
+
         }
 
         public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
@@ -159,6 +159,19 @@ namespace Personal_Nutritionist.DataLayer.Repository
             {
                 var query = Include(includeProperties);
                 return query.Where(predicate).ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Can't get value from repository");
+                return null;
+            }
+        }
+
+        public IQueryable<TEntity> GetQuery()
+        {
+            try
+            {
+                return _dbSet.AsNoTracking();
             }
             catch
             {

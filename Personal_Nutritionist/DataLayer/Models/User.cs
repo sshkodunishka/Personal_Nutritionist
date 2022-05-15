@@ -25,6 +25,7 @@ namespace Personal_Nutritionist.DataLayer
         ICollection<Product> Resipes { get; set; }
 
         public ICollection<Favorites> Favorites { get; set; }
+        public ICollection<MealHistory> MealHistories { get; set; }
 
         public User() { }
 

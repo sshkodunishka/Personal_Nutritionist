@@ -22,8 +22,8 @@ namespace Personal_Nutritionist.DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Server=адрес_сервера/localhost;Database=имя_базы_данных;User Id=логин;Password=пароль;
-            optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
-            //optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -55,6 +55,16 @@ namespace Personal_Nutritionist.DataLayer
                 .HasOne(bc => bc.User)
                 .WithMany(c => c.Favorites)
                 .HasForeignKey(bc => bc.UserId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<MealFood>()
+                .HasOne(bc => bc.Recipe)
+                .WithMany(b => b.MealFoods).IsRequired(false)
+                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.Restrict).IsRequired(false);
+
+            modelBuilder.Entity<MealFood>()
+                .HasOne(bc => bc.Product)
+                .WithMany(c => c.MealFoods).IsRequired(false)
+                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.Restrict).IsRequired(false);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Personal_Nutritionist.DataLayer
 {
     public class Favorites
     {
+        public int FavoriteId { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }

@@ -59,6 +59,5 @@ namespace Personal_Nutritionist.Command
                 MessageBox.Show("Can't add course");
             }
         }
-
     }
 }

@@ -1,12 +1,12 @@
-﻿<UserControl x:Class="Personal_Nutritionist.Views.AdminRecipeView"
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="Personal_Nutritionist.Views.User.AddMealRecipe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Personal_Nutritionist.Views"
+             xmlns:local="clr-namespace:Personal_Nutritionist.Views.User"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             d:DesignHeight="450" d:DesignWidth="800" MinWidth="600">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Rectangle Height="340" Fill="White" VerticalAlignment="Top" Margin="10,30" RadiusY="25" RadiusX="25">
             <Rectangle.Effect>
@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Recipes" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="Choose recipe" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
             <ListView x:Name="linksListView" Grid.Row="1" SelectedItem="{Binding SelectedRecipe}"
                       ItemsSource="{Binding Recipes}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>
@@ -43,14 +43,14 @@
                 </ListView.View>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                        <i:InvokeCommandAction Command="{Binding DataContext.OpenRecipe, ElementName= linksListView}" 
+                        <i:InvokeCommandAction Command="{Binding DataContext.AddMealRecipeCommand, ElementName= linksListView}" 
                                                CommandParameter="{Binding SelectedItem, ElementName=linksListView}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListView>
         </Grid>
-        <Button Content="Add recipe" 
-                Command="{Binding NavigateAdminAddRecipe}" 
+        <Button Content="Back" 
+                Command="{Binding BackToChangeMeal}" 
                 Width="180" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
