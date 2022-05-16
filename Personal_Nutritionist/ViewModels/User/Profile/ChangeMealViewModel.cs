@@ -92,35 +92,13 @@ namespace Personal_Nutritionist.ViewModels
                 Repository<MealHistory> repositoryMealHistory = new Repository<MealHistory>(context);
 
                 User currentUser = Account.getInstance(null).CurrentUser;
-                IEnumerable<MealHistory> histories = repositoryMealHistory
-                   .GetQuery().Include(y => y.MealFood)
-                   .ThenInclude(x => x.Recipe)
-                   .Include(y => y.MealFood)
-                   .ThenInclude(x => x.Product)
-                   .Where(
-                   x => x.UserId == currentUser.UserId
-                   && x.Date.Year == SelectedDate.Year
-                   && x.Date.Month == SelectedDate.Month
-                   && x.Date.Day == SelectedDate.Day
-                   && x.MealType == SelectedType
-                   )
-                   .ToList().ToList();
 
-                MealHistory history;
-                if (histories.Count() == 0)
-                {
-                    history = new MealHistory(SelectedDate, SelectedType, currentUser.UserId);
-                    repositoryMealHistory.Create(history);
-                }
-                else
-                {
-                    history = histories.First();
-                }
+                MealHistory history = repositoryMealHistory.getMealHistory(currentUser, SelectedDate, SelectedType);
 
                 DisplayedFood = new ObservableCollection<DisplayedFood>();
                 if (history.MealFood != null)
                 {
-                    history.MealFood.ToList().ForEach(mealFood =>
+                    history.MealFood .ToList().ForEach(mealFood =>
                     {
                         DisplayedFood food;
                         if (mealFood.ProductId != null)

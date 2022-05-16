@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Personal_Nutritionist.Views.User"
              xmlns:valid="clr-namespace:Personal_Nutritionist.Helpers.Validation"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="600" MinWidth="600">
+             d:DesignHeight="450" d:DesignWidth="550" MinWidth="600">
     <Grid>
         <Rectangle Height="340" Fill="White" VerticalAlignment="Top" Margin="10,30" RadiusY="25" RadiusX="25">
             <Rectangle.Effect>
@@ -25,78 +25,85 @@
             </StackPanel>
             <!--Total calories-->
             <StackPanel Margin="0 20 130 0" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock>Total Calories:</TextBlock>
-                <TextBlock Margin="10 0 0 0" Text="{Binding TotalCalories}"></TextBlock>
+                <TextBlock FontSize="16">Total Calories:</TextBlock>
+                <TextBlock FontSize="16" Margin="10 0 0 0" Text="{Binding TotalCalories}"></TextBlock>
             </StackPanel>
             <!--Calories Left-->
-            <StackPanel Margin="0 20 130 0" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock>Calories Left:</TextBlock>
-                <TextBlock Margin="10 0 0 0" Text="{Binding CaloriesLeft}"></TextBlock>
+            <StackPanel Margin="0 10 130 0" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock FontSize="16">Calories Left:</TextBlock>
+                <TextBlock FontSize="16" Margin="10 0 0 0" Text="{Binding CaloriesLeft}"></TextBlock>
             </StackPanel>
             <!--Breakfast-->
-            <Grid Margin="0 20 0 0" Width="400"  HorizontalAlignment="Center">
+            <Grid Margin="0 20 0 0" Width="500"  HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock 
+                        FontSize="16"
                            HorizontalAlignment="Left"
                            Text="Breakfast:"
                            Grid.Column="0" />
                     <TextBlock Margin="20 0 0 0" 
+                               FontSize="16"
                                Text="{Binding BreakfastFood}" 
-                               Width="220"
+                               Width="270"
                                TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                    <Button FontSize="12" Width="80" Height="23"
+                    <Button FontSize="16" Width="100" Height="30"
+                            
                             Content="Change" Command="{Binding ChangeBreakfast}"
                             VerticalAlignment="Center" Margin="0 0 10 0"
                              BorderBrush="#8408c7" Background="#c678f0" />
                 </StackPanel>
             </Grid>
             <!-- Lunch -->
-            <Grid Margin="0 20 0 0" Width="400"  HorizontalAlignment="Center">
+            <Grid Margin="0 20 0 0" Width="500"  HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock 
+                        FontSize="16"
                            HorizontalAlignment="Left"
                            Text="Lunch:"
                            Grid.Column="0" />
                     <TextBlock Margin="20 0 0 0" 
+                               FontSize="16"
                                Text="{Binding LunchFood}" 
-                               Width="220"
+                               Width="270"
                                TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                    <Button FontSize="12" Width="80" Height="23"
+                    <Button FontSize="16" Width="100" Height="30"
                             Content="Change" Command="{Binding ChangeLunch}"
                             VerticalAlignment="Center" Margin="0 0 10 0" 
                              BorderBrush="#8408c7" Background="#c678f0" />
                 </StackPanel>
             </Grid>
             <!--Dinner-->
-            <Grid Margin="0 20 0 0" Width="400"  HorizontalAlignment="Center">
+            <Grid Margin="0 20 0 0" Width="500"  HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock 
+                        FontSize="16"
                            HorizontalAlignment="Left"
                            Text="Dinner:"
                            Grid.Column="0" />
                     <TextBlock Margin="20 0 0 0" 
+                               FontSize="16"
                                Text="{Binding DinnerFood}" 
-                               Width="220"
+                               Width="270"
                                TextTrimming="CharacterEllipsis"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Column="1">
-                    <Button FontSize="12" Width="80" Height="23"
+                    <Button FontSize="16" Width="100" Height="30"
                             Content="Change" Command="{Binding ChangeDinner}"
                             VerticalAlignment="Center" Margin="0 0 10 0"
                              BorderBrush="#8408c7" Background="#c678f0" Cursor="Hand" />

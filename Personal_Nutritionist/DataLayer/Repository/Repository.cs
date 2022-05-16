@@ -180,6 +180,71 @@ namespace Personal_Nutritionist.DataLayer.Repository
             }
         }
 
+
+
+        public MealHistory getMealHistory(User currentUser, DateTime SelectedDate, MealType SelectedType)
+        {
+            try
+            {
+                DbSet<MealHistory> mealHistoryDbSet = _context.Set<MealHistory>();
+                IEnumerable<MealHistory> histories = mealHistoryDbSet.AsNoTracking().Include(y => y.MealFood)
+                   .ThenInclude(x => x.Recipe)
+                   .Include(y => y.MealFood)
+                   .ThenInclude(x => x.Product)
+                   .Where(
+                   x => x.UserId == currentUser.UserId
+                   && x.Date.Year == SelectedDate.Year
+                   && x.Date.Month == SelectedDate.Month
+                   && x.Date.Day == SelectedDate.Day
+                   && x.MealType == SelectedType
+                   )
+                   .ToList();
+
+                MealHistory history;
+                if (histories.Count() == 0)
+                {
+                    history = new MealHistory(SelectedDate, SelectedType, currentUser.UserId);
+                    mealHistoryDbSet.Add(history);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    history = histories.First();
+                }
+                return history;
+            }
+            catch
+            {
+                MessageBox.Show("Can't include value into repository");
+                return null;
+            }
+        }
+
+        public List<MealHistory> getMealHistory(User currentUser, DateTime SelectedDate)
+        {
+            try
+            {
+                DbSet<MealHistory> mealHistoryDbSet = _context.Set<MealHistory>();
+                List<MealHistory> histories = mealHistoryDbSet.AsNoTracking().Include(y => y.MealFood)
+                   .ThenInclude(x => x.Recipe)
+                   .Include(y => y.MealFood)
+                   .ThenInclude(x => x.Product)
+                   .Where(
+                   x => x.UserId == currentUser.UserId
+                   && x.Date.Year == SelectedDate.Year
+                   && x.Date.Month == SelectedDate.Month
+                   && x.Date.Day == SelectedDate.Day
+                   )
+                   .ToList();
+                return histories;
+            }
+            catch
+            {
+                MessageBox.Show("Can't include value into repository");
+                return null;
+            }
+        }
+
         private IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
         {
             try

@@ -1,8 +1,11 @@
 ﻿using Personal_Nutritionist.Command;
 using Personal_Nutritionist.DataLayer;
+using Personal_Nutritionist.DataLayer.Repository;
 using Personal_Nutritionist.Services;
 using Personal_Nutritionist.Stores;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -32,8 +35,8 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        public int _caloriesLeft;
-        public int CaloriesLeft
+        public float _caloriesLeft;
+        public float CaloriesLeft
         {
             get => _caloriesLeft;
             set
@@ -104,15 +107,59 @@ namespace Personal_Nutritionist.ViewModels
 
                 SetPrevDate = new ChangeSelectedDate(this, false);
                 SetNextDate = new ChangeSelectedDate(this, true);
-                
-
 
                 TotalCalories = 0;
                 CaloriesLeft = 0;
-                BreakfastFood = "asdasd";
-                LunchFood = "asdasd";
-                DinnerFood = "asdasd";
 
+                Context context = new Context();
+                Repository<MealHistory> mealHistoryRepository = new Repository<MealHistory>(context);
+                User user = Account.getInstance(null).CurrentUser;
+
+                List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(user, SelectedDate);
+
+                mealHistories.ForEach(mealHistory =>
+                {
+                    if (mealHistory.MealFood != null)
+                    {
+                        mealHistory.MealFood.ToList().ForEach(mealFood =>
+                        {
+                            if (mealFood.ProductId != null)
+                            {
+                                TotalCalories += mealFood.Product.Calories;
+                                if(mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    BreakfastFood +=", " + mealFood.Product.Name;
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    LunchFood += ", " + mealFood.Product.Name;
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    DinnerFood += ", " + mealFood.Product.Name;
+                                }
+                            }
+                            else
+                            {
+                                TotalCalories += mealFood.Recipe.Calories;
+                                if (mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    BreakfastFood += ", " + mealFood.Recipe.Name;
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    LunchFood += ", " + mealFood.Recipe.Name;
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    DinnerFood += ", " + mealFood.Recipe.Name;
+                                }
+                            }
+                        });
+                    }
+                });
+                float koef = 120;
+                CaloriesLeft = user.Weight * koef - (float)TotalCalories;
 
                 ChangeBreakfast = new PersonalNavigateCommand<ChangeMealViewModel>(
                    new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
@@ -140,5 +187,6 @@ namespace Personal_Nutritionist.ViewModels
                 MessageBox.Show("Can't load tutor ptofile");
             }
         }
+
     }
 }
