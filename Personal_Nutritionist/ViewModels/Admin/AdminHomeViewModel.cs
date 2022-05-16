@@ -34,9 +34,9 @@ namespace Personal_Nutritionist.ViewModels
                 _personalNavigationStore = personalNavigationStore;
                 _personalNavigationStore.CurrentPersonalViewModelChanged += OnCurrentViewModelChanged;
 
-                ProfileCommand = new PersonalNavigateCommand<AdminProfileViewModel>(
-                    new PersonalNavigationService<AdminProfileViewModel>(personalNavigationStore,
-                    () => new AdminProfileViewModel(personalNavigationStore)));
+                ProfileCommand = new PersonalNavigateCommand<AdminUsersViewModel>(
+                    new PersonalNavigationService<AdminUsersViewModel>(personalNavigationStore,
+                    () => new AdminUsersViewModel(personalNavigationStore)));
 
                 RecipeCommand = new PersonalNavigateCommand<AdminRecipeViewModel>(
                     new PersonalNavigationService<AdminRecipeViewModel>(personalNavigationStore,

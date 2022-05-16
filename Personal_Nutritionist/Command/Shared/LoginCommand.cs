@@ -59,9 +59,8 @@ namespace Personal_Nutritionist.Command
                             }
                             else
                             {
-                                //TODO: change me 
                                 _navigationStore.CurrentViewModel = new AdminHomeViewModel(_personalNavigationStore, _navigationStore);
-                                _personalNavigationStore.CurrentPersonalViewModel = new AdminProfileViewModel(_personalNavigationStore);
+                                _personalNavigationStore.CurrentPersonalViewModel = new AdminUsersViewModel(_personalNavigationStore);
                             }
                         }
                         else

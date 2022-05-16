@@ -11,25 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
 
 namespace Personal_Nutritionist.ViewModels
 {
-    public class DisplayedFood
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Calories { get; set; }
-
-        public DisplayedFood(int id, string name, int calories)
-        {
-            Id = id;
-            Name = name;
-            Calories = calories;
-        }
-    }
-
-    public class ChangeMealViewModel : ViewModelBase
+    public class AdminUserMealHistoty : ViewModelBase
     {
         public DateTime _selectedDate;
         public DateTime SelectedDate
@@ -64,23 +49,9 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        public DisplayedFood _selectedFood;
-        public DisplayedFood SelectedFood
-        {
-            get => _selectedFood;
-            set
-            {
-                _selectedFood = value;
-                OnPropertyChanged(nameof(SelectedFood));
-            }
-        }
+        public ICommand BackToUser { get; }
 
-
-
-        public ICommand DeleteMeal { get; }
-        public ICommand NavigateUserAddRecipeMeal { get; }
-
-        public ChangeMealViewModel(PersonalNavigationStore personalNavigationStore, DateTime selectedDate, MealType mealType)
+        public AdminUserMealHistoty(PersonalNavigationStore personalNavigationStore, DateTime selectedDate, MealType mealType, User user)
         {
             try
             {
@@ -90,14 +61,13 @@ namespace Personal_Nutritionist.ViewModels
                 Context context = new Context();
                 Repository<MealHistory> repositoryMealHistory = new Repository<MealHistory>(context);
 
-                User currentUser = Account.getInstance(null).CurrentUser;
 
-                MealHistory history = repositoryMealHistory.getMealHistory(currentUser, SelectedDate, SelectedType);
+                MealHistory history = repositoryMealHistory.getMealHistory(user, SelectedDate, SelectedType);
 
                 DisplayedFood = new ObservableCollection<DisplayedFood>();
                 if (history.MealFood != null)
                 {
-                    history.MealFood .ToList().ForEach(mealFood =>
+                    history.MealFood.ToList().ForEach(mealFood =>
                     {
                         DisplayedFood food;
                         if (mealFood.ProductId != null)
@@ -111,14 +81,13 @@ namespace Personal_Nutritionist.ViewModels
                         DisplayedFood.Add(food);
                     });
                 }
-               
 
-                DeleteMeal = new DeleteMeal(this);
-                NavigateUserAddRecipeMeal = new PersonalNavigateCommand<AddMealRecipe>(
-                  new PersonalNavigationService<AddMealRecipe>(personalNavigationStore,
+
+                BackToUser = new PersonalNavigateCommand<AdminUserInfoViewModel>(
+                  new PersonalNavigationService<AdminUserInfoViewModel>(personalNavigationStore,
                   () =>
                   {
-                      return new AddMealRecipe(personalNavigationStore, SelectedDate, SelectedType);
+                      return new AdminUserInfoViewModel(personalNavigationStore, user);
                   }));
             }
             catch

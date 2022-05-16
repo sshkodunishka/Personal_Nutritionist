@@ -30,7 +30,7 @@ namespace Personal_Nutritionist.ViewModels
             }
             catch
             {
-                MessageBox.Show("Can't get info about course");
+                MessageBox.Show("Can't get info about recipe");
             }
         }
     }
