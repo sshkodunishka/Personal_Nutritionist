@@ -40,6 +40,7 @@ namespace Personal_Nutritionist.ViewModels
 
         public ICommand OpenRecipe { get; }
         public ICommand NavigateUserAddRecipe { get; }
+        public ICommand AddFavoriteCommand { get; }
 
         public UserRecipeViewModel(PersonalNavigationStore personalNavigationStore)
         {
@@ -70,6 +71,9 @@ namespace Personal_Nutritionist.ViewModels
                    {
                        return new UserAddRecipeViewModel(personalNavigationStore);
                    }));
+
+                AddFavoriteCommand = new AddFavorite(this);
+
             }
             catch
             {

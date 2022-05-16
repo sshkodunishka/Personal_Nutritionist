@@ -9,8 +9,13 @@ namespace Personal_Nutritionist.ViewModels
 {
     public class UserFavoriteViewModel : ViewModelBase
     {
+       
+        
         public UserFavoriteViewModel(PersonalNavigationStore personalNavigationStore)
         {
+
+
+
 
         }
     }

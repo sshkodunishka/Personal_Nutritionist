@@ -8,6 +8,8 @@ namespace Personal_Nutritionist.DataLayer
 {
     public class RecipeProduct 
     {
+        public int RecipeProductId { get; set; }
+
         public int RecipeId { get; set; }
         public Recipe Recipe { get; set; }
 

@@ -1,9 +1,10 @@
-﻿   
+﻿
 using System.Windows;
 using System.Windows.Input;
 using Personal_Nutritionist.Command;
 using Personal_Nutritionist.Services;
 using Personal_Nutritionist.Stores;
+using Personal_Nutritionist.ViewModels;
 
 namespace Personal_Nutritionist.ViewModels
 {
