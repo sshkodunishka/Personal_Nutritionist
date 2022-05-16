@@ -21,9 +21,9 @@
         <Rectangle Height="280" VerticalAlignment="Top" Grid.RowSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#AED3B9"/>
-                    <GradientStop Color="#4F9363" Offset="1"/>
-                    <GradientStop Color="#80BA91" Offset="0.5"/>
+                    <GradientStop Color="#f5d058"/>
+                    <GradientStop Color="#f2ac0a" Offset="1"/>
+                    <GradientStop Color="#f2c635" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
@@ -126,7 +126,7 @@
                 Width="150" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Margin="0,0,0,70" 
-                BorderBrush="#FCC67C" Background="#FCC67C" 
+              BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black" RenderTransformOrigin="0.49,2.355">
             <Button.Style >
                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
@@ -149,7 +149,7 @@
                 Command="{Binding LoginCommand}" 
                 Width="150" HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Margin="0,25" 
-                BorderBrush="#FCC67C" Background="#FCC67C" 
-                Foreground="Black"/>
+                 BorderBrush="#8408c7" Background="#c678f0" 
+                Foreground="Black" Cursor="Hand"/>
     </Grid>
 </UserControl>

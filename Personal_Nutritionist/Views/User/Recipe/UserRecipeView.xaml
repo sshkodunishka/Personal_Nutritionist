@@ -64,7 +64,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,35" 
-                BorderBrush="#FCC67C" Background="#FCC67C" 
+                BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black"
                 Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
         </Button>

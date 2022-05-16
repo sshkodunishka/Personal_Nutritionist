@@ -39,7 +39,8 @@
                         <GridViewColumn Width="370">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="Delete"
+                                    <Button  BorderBrush="#8408c7" Background="#c678f0" 
+                                             x:Name="Delete"
                                             Content="Delete"
                                             Command="{Binding Path=DataContext.DeleteMeal,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
                                 </DataTemplate>
@@ -55,9 +56,9 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,250,0,0" 
-                BorderBrush="#FCC67C" Background="#FCC67C" 
+                BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black"
-                Style="{StaticResource MaterialDesignRaisedButton}" >
+                Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
             </Button>
 
         </StackPanel>

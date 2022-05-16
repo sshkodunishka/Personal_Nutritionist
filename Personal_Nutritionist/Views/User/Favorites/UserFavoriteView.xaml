@@ -47,15 +47,15 @@
                 </i:Interaction.Triggers>
             </ListView>
         </Grid>
-        <Button Content="Add recipe" 
+        <Button Content="Add favorite" 
                 Command="{Binding NavigateAdminAddRecipe}" 
                 Width="180" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,35" 
-                BorderBrush="#FCC67C" Background="#FCC67C" 
+                 BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black"
-                Style="{StaticResource MaterialDesignRaisedButton}" >
+                Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
         </Button>
     </Grid>
 </UserControl>

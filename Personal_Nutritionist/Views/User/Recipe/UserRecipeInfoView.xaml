@@ -29,6 +29,6 @@
                 <TextBlock Text="{Binding Recipe.Description}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="12"/>
             </StackPanel>
         </Grid>
-        <Button Content="Send request" Command="{Binding SendRequest}" Width="180" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,35" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
+        <Button Content="Send request" Command="{Binding SendRequest}" Width="180" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,35" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black" Cursor="Hand"/>
     </Grid>
 </UserControl>
