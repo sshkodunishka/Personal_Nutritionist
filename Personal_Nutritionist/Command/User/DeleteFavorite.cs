@@ -1,0 +1,51 @@
+﻿using Personal_Nutritionist.DataLayer;
+using Personal_Nutritionist.DataLayer.Repository;
+using Personal_Nutritionist.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace Personal_Nutritionist.Command
+{
+    public class DeleteFavorite : CommandBase
+    {
+        private readonly UserFavoriteViewModel _viewModel;
+
+        public DeleteFavorite(UserFavoriteViewModel viewModel)
+        {
+            _viewModel = viewModel;
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public override void Execute(object parameter)
+        {
+            try
+            {
+                Context context = new Context();
+                Repository<Favorites> favoriteRepository = new Repository<Favorites>(context);
+                User user = Account.getInstance(null).CurrentUser;
+
+
+                var id = _viewModel.SelectedFavorite.RecipeId;
+                _viewModel.Favorites = new ObservableCollection<Favorites>(
+                    _viewModel.Favorites.Where(f => f.RecipeId != _viewModel.SelectedFavorite.RecipeId));
+                var food = favoriteRepository.FindById(id);
+                favoriteRepository.Remove(food);
+
+            }
+
+            catch
+            {
+                MessageBox.Show("Can't delete selected meal");
+            }
+        }
+    }
+}

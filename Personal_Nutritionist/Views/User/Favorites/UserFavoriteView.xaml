@@ -19,8 +19,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Favotites" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
-            <ListView x:Name="linksListView" Grid.Row="1" SelectedItem="{Binding SelectedRecipe}"
-                      ItemsSource="{Binding Recipes}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView x:Name="linksListView" Grid.Row="1"  SelectedItem="{Binding SelectedFavorite}"
+                      ItemsSource="{Binding Favorites}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
                         <Style.Triggers>
@@ -35,8 +35,18 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Recipe name</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Calories}">Calories</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Name}">Recipe name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Calories}">Calories</GridViewColumn>
+                        <GridViewColumn Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  BorderBrush="#8408c7" Background="#c678f0" 
+                                             x:Name="Dislike"
+                                            Content="Dislike"
+                                            Command="{Binding Path=DataContext.DeleteFavoriteCommand,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
                 <i:Interaction.Triggers>

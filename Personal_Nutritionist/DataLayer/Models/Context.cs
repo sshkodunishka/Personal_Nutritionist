@@ -22,8 +22,8 @@ namespace Personal_Nutritionist.DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Server=адрес_сервера/localhost;Database=имя_базы_данных;User Id=логин;Password=пароль;
-            //optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace Personal_Nutritionist.DataLayer
             modelBuilder.Entity<Favorites>()
                 .HasOne(bc => bc.Recipe)
                 .WithMany(b => b.Favorites)
-                .HasForeignKey(bc => bc.UserId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Favorites>()
                 .HasOne(bc => bc.User)
