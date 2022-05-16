@@ -28,7 +28,7 @@
                 <StackPanel Margin="0,20">
                     <Button Content="Профиль" Command="{Binding ProfileCommand}"
                             Width="200" HorizontalAlignment="Center"  Background="#FCC67C" Foreground="Black"/>
-                    <Button Content="Рецепты" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
+                    <Button Content="Рецепты" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black" Cursor="Hand"/>
                     <Button Content="Продукты" Command="{Binding ProductCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
                     <Button Content="Избранные" Command="{Binding FavoriteCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black"/>
                 </StackPanel>
@@ -41,6 +41,12 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:UserRecipeViewModel}">
                         <views:UserRecipeView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:UserRecipeInfoViewModel}">
+                        <views:UserRecipeInfoView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:UserAddRecipeViewModel}">
+                        <views:UserAddRecipeView/>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:UserProductViewModel}">
                         <views:UserProductView/>
