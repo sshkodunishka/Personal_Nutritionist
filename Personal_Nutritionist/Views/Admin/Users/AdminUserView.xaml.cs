@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Personal_Nutritionist.Views
 {
     /// <summary>
-    /// Логика взаимодействия для AdminProfileView.xaml
+    /// Логика взаимодействия для AdminUserView.xaml
     /// </summary>
-    public partial class AdminProfileView : UserControl
+    public partial class AdminUserView : UserControl
     {
-        public AdminProfileView()
+        public AdminUserView()
         {
             InitializeComponent();
         }

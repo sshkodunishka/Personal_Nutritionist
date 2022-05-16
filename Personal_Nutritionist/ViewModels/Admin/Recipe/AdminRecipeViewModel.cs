@@ -72,7 +72,7 @@ namespace Personal_Nutritionist.ViewModels
             }
             catch
             {
-                MessageBox.Show("Can't see all records");
+                MessageBox.Show("Can't see all recipes");
             }
         }
     }

@@ -22,7 +22,8 @@ namespace Personal_Nutritionist.DataLayer
         public Role Role { get; set; }
 
         ICollection<Product> Products { get; set; }
-        ICollection<Product> Resipes { get; set; }
+        ICollection<Recipe> Resipes { get; set; }
+        ICollection<AdminCountingCalories> AdminCountingCalories { get; set; }
 
         public ICollection<Favorites> Favorites { get; set; }
         public ICollection<MealHistory> MealHistories { get; set; }

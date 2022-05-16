@@ -14,13 +14,20 @@ namespace Personal_Nutritionist.Command
     public class ChangeSelectedDate : CommandBase
     {
 
-        private readonly UserProfileViewModel _viewModel;
+        private readonly UserProfileViewModel _user_viewModel;
+        private readonly AdminUserInfoViewModel _admin_viewModel;
         private bool isNextDay;
 
         public ChangeSelectedDate(UserProfileViewModel viewModel, bool _isNextDay)
         {
             isNextDay = _isNextDay;
-            _viewModel = viewModel;
+            _user_viewModel = viewModel;
+        }
+
+        public ChangeSelectedDate(AdminUserInfoViewModel viewModel, bool _isNextDay)
+        {
+            isNextDay = _isNextDay;
+            _admin_viewModel = viewModel;
         }
 
         public override bool CanExecute(object parameter)
@@ -32,73 +39,174 @@ namespace Personal_Nutritionist.Command
         {
             try
             {
-                DateTime newSelectedDate;
-                if (this.isNextDay)
+                if (_user_viewModel != null)
                 {
-                    newSelectedDate = this._viewModel.SelectedDate.AddDays(1);
-                }
-                else
-                {
-                    newSelectedDate = this._viewModel.SelectedDate.AddDays(-1);
-                }
-                _viewModel.SelectedDate = newSelectedDate;
-                _viewModel.BreakfastFood = "";
-                _viewModel.LunchFood = "";
-                _viewModel.DinnerFood = "";
-                _viewModel.TotalCalories = 0;
-                _viewModel.CaloriesLeft = 0;
-                Context context = new Context();
-                Repository<MealHistory> mealHistoryRepository = new Repository<MealHistory>(context);
-                User user = Account.getInstance(null).CurrentUser;
-
-                List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(user, _viewModel.SelectedDate);
-
-                mealHistories.ForEach(mealHistory =>
-                {
-                    if (mealHistory.MealFood == null)
+                    DateTime newSelectedDate;
+                    if (this.isNextDay)
                     {
-                        return;
+                        newSelectedDate = this._user_viewModel.SelectedDate.AddDays(1);
                     }
-                    mealHistory.MealFood.ToList().ForEach(mealFood =>
+                    else
                     {
-                        if (mealFood.ProductId != null)
+                        newSelectedDate = this._user_viewModel.SelectedDate.AddDays(-1);
+                    }
+                    _user_viewModel.SelectedDate = newSelectedDate;
+                    _user_viewModel.BreakfastFood = "";
+                    _user_viewModel.LunchFood = "";
+                    _user_viewModel.DinnerFood = "";
+                    _user_viewModel.TotalCalories = 0;
+                    _user_viewModel.CaloriesLeft = 0;
+                    Context context = new Context();
+                    Repository<MealHistory> mealHistoryRepository = new Repository<MealHistory>(context);
+
+                    User user = Account.getInstance(null).CurrentUser;
+
+
+                    Repository<AdminCountingCalories> adminCaloriesRepository = new Repository<AdminCountingCalories>(context);
+
+                    _user_viewModel.AdminCountedCalories = 0;
+                    IEnumerable<AdminCountingCalories> adminCalories = adminCaloriesRepository.
+                        Get(x => x.UserId == user.UserId
+                            && x.Date.Year == _user_viewModel.SelectedDate.Year
+                            && x.Date.Month == _user_viewModel.SelectedDate.Month
+                            && x.Date.Day == _user_viewModel.SelectedDate.Day);
+
+                    if (adminCalories.Count() > 0)
+                    {
+                        _user_viewModel.AdminCountedCalories = adminCalories.First().Calories;
+                    }
+
+                    List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(user, _user_viewModel.SelectedDate);
+
+                    mealHistories.ForEach(mealHistory =>
+                    {
+                        if (mealHistory.MealFood == null)
                         {
-                            _viewModel.TotalCalories += mealFood.Product.Calories;
-                            if (mealHistory.MealType == MealType.Breakfast)
-                            {
-                                _viewModel.BreakfastFood += ", " + mealFood.Product.Name;
-                            }
-                            if (mealHistory.MealType == MealType.Lunch)
-                            {
-                                _viewModel.LunchFood += ", " + mealFood.Product.Name;
-                            }
-                            if (mealHistory.MealType == MealType.Dinner)
-                            {
-                                _viewModel.DinnerFood += ", " + mealFood.Product.Name;
-                            }
+                            return;
                         }
-                        else
+                        mealHistory.MealFood.ToList().ForEach(mealFood =>
                         {
-                            _viewModel.TotalCalories += mealFood.Recipe.Calories;
-                            if (mealHistory.MealType == MealType.Breakfast)
+                            if (mealFood.ProductId != null)
                             {
-                                _viewModel.BreakfastFood += ", " + mealFood.Recipe.Name;
+                                _user_viewModel.TotalCalories += mealFood.Product.Calories;
+                                if (mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    _user_viewModel.BreakfastFood += mealFood.Product.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    _user_viewModel.LunchFood += mealFood.Product.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    _user_viewModel.DinnerFood += mealFood.Product.Name + ", ";
+                                }
                             }
-                            if (mealHistory.MealType == MealType.Lunch)
+                            else
                             {
-                                _viewModel.LunchFood += ", " + mealFood.Recipe.Name;
+                                _user_viewModel.TotalCalories += mealFood.Recipe.Calories;
+                                if (mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    _user_viewModel.BreakfastFood += mealFood.Recipe.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    _user_viewModel.LunchFood += mealFood.Recipe.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    _user_viewModel.DinnerFood += mealFood.Recipe.Name + ", ";
+                                }
                             }
-                            if (mealHistory.MealType == MealType.Dinner)
-                            {
-                                _viewModel.DinnerFood += ", " + mealFood.Recipe.Name;
-                            }
-                        }
+                        });
                     });
-                });
 
 
-                float koef = 120;
-                _viewModel.CaloriesLeft = user.Weight * koef - (float)_viewModel.TotalCalories;
+                    float koef = 120;
+                    _user_viewModel.CaloriesLeft = user.Weight * koef - (float)_user_viewModel.TotalCalories;
+                }
+                if (_admin_viewModel != null)
+                {
+                    DateTime newSelectedDate;
+                    if (this.isNextDay)
+                    {
+                        newSelectedDate = this._admin_viewModel.SelectedDate.AddDays(1);
+                    }
+                    else
+                    {
+                        newSelectedDate = this._admin_viewModel.SelectedDate.AddDays(-1);
+                    }
+                    _admin_viewModel.SelectedDate = newSelectedDate;
+                    _admin_viewModel.BreakfastFood = "";
+                    _admin_viewModel.LunchFood = "";
+                    _admin_viewModel.DinnerFood = "";
+                    _admin_viewModel.TotalCalories = 0;
+                    _admin_viewModel.CaloriesLeft = 0;
+                    Context context = new Context();
+                    Repository<MealHistory> mealHistoryRepository = new Repository<MealHistory>(context);
+                    
+                    Repository<AdminCountingCalories> adminCaloriesRepository = new Repository<AdminCountingCalories>(context);
+
+                    _admin_viewModel.AdminCountedCalories = 0;
+                    IEnumerable<AdminCountingCalories> adminCalories = adminCaloriesRepository.
+                        Get(x => x.UserId == _admin_viewModel.User.UserId
+                            && x.Date.Year == _admin_viewModel.SelectedDate.Year
+                            && x.Date.Month == _admin_viewModel.SelectedDate.Month
+                            && x.Date.Day == _admin_viewModel.SelectedDate.Day);
+
+                    if (adminCalories.Count() > 0)
+                    {
+                        _admin_viewModel.AdminCountedCalories = adminCalories.First().Calories;
+                    }
+
+                    List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(_admin_viewModel.User, _admin_viewModel.SelectedDate);
+
+                    mealHistories.ForEach(mealHistory =>
+                    {
+                        if (mealHistory.MealFood == null)
+                        {
+                            return;
+                        }
+                        mealHistory.MealFood.ToList().ForEach(mealFood =>
+                        {
+                            if (mealFood.ProductId != null)
+                            {
+                                _admin_viewModel.TotalCalories += mealFood.Product.Calories;
+                                if (mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    _admin_viewModel.BreakfastFood += mealFood.Product.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    _admin_viewModel.LunchFood += mealFood.Product.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    _admin_viewModel.DinnerFood += mealFood.Product.Name + ", ";
+                                }
+                            }
+                            else
+                            {
+                                _admin_viewModel.TotalCalories += mealFood.Recipe.Calories;
+                                if (mealHistory.MealType == MealType.Breakfast)
+                                {
+                                    _admin_viewModel.BreakfastFood += mealFood.Recipe.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Lunch)
+                                {
+                                    _admin_viewModel.LunchFood += mealFood.Recipe.Name + ", ";
+                                }
+                                if (mealHistory.MealType == MealType.Dinner)
+                                {
+                                    _admin_viewModel.DinnerFood += mealFood.Recipe.Name + ", ";
+                                }
+                            }
+                        });
+                    });
+
+                    float koef = 4.3f;
+                    _admin_viewModel.CaloriesLeft = _admin_viewModel.User.Weight * koef - (float)_admin_viewModel.TotalCalories;
+                }
             }
             catch
             {

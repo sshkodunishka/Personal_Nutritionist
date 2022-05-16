@@ -6,13 +6,26 @@ using Personal_Nutritionist.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Personal_Nutritionist.ViewModels
 {
-    public class UserProfileViewModel : ViewModelBase
+    public class AdminUserInfoViewModel : ViewModelBase
     {
+        public User _user;
+        public User User
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
+
         public DateTime _selectedDate;
         public DateTime SelectedDate
         {
@@ -45,6 +58,19 @@ namespace Personal_Nutritionist.ViewModels
                 OnPropertyChanged(nameof(CaloriesLeft));
             }
         }
+
+        public int _adminCountedCalories;
+        public int AdminCountedCalories
+        {
+            get => _adminCountedCalories;
+            set
+            {
+                _adminCountedCalories = value;
+                OnPropertyChanged(nameof(AdminCountedCalories));
+            }
+        }
+
+        
 
         public string _breakfastFood;
         public string BreakfastFood
@@ -79,27 +105,18 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        public float _adminCountedCalories;
-        public float AdminCountedCalories
-        {
-            get => _adminCountedCalories;
-            set
-            {
-                _adminCountedCalories = value;
-                OnPropertyChanged(nameof(AdminCountedCalories));
-            }
-        }
-
         public ICommand SetPrevDate { get; }
         public ICommand SetNextDate { get; }
-        public ICommand ChangeBreakfast { get; }
-        public ICommand ChangeLunch { get; }
-        public ICommand ChangeDinner { get; }
+        public ICommand OpenBreakfast { get; }
+        public ICommand OpenLunch { get; }
+        public ICommand OpenDinner { get; }
+        public ICommand ChangeAdminCalories { get; }
 
-        public UserProfileViewModel(PersonalNavigationStore personalNavigationStore)
+        public AdminUserInfoViewModel(PersonalNavigationStore personalNavigationStore, User selectedUser)
         {
             try
             {
+               
                 SelectedDate = DateTime.Now;
 
                 SetPrevDate = new ChangeSelectedDate(this, false);
@@ -107,26 +124,25 @@ namespace Personal_Nutritionist.ViewModels
 
                 TotalCalories = 0;
                 CaloriesLeft = 0;
-
+                User = selectedUser;
                 Context context = new Context();
                 Repository<MealHistory> mealHistoryRepository = new Repository<MealHistory>(context);
-                User user = Account.getInstance(null).CurrentUser;
-
                 Repository<AdminCountingCalories> adminCaloriesRepository = new Repository<AdminCountingCalories>(context);
 
                 AdminCountedCalories = 0;
                 IEnumerable<AdminCountingCalories> adminCalories = adminCaloriesRepository.
-                    Get(x => x.UserId == user.UserId
+                    Get(x => x.UserId == selectedUser.UserId
                         && x.Date.Year == SelectedDate.Year
                         && x.Date.Month == SelectedDate.Month
                         && x.Date.Day == SelectedDate.Day);
 
-                if (adminCalories.Count() > 0)
+                if(adminCalories.Count() > 0)
                 {
                     AdminCountedCalories = adminCalories.First().Calories;
                 }
 
-                List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(user, SelectedDate);
+
+                List<MealHistory> mealHistories = mealHistoryRepository.getMealHistory(User, SelectedDate);
 
                 mealHistories.ForEach(mealHistory =>
                 {
@@ -170,34 +186,35 @@ namespace Personal_Nutritionist.ViewModels
                     }
                 });
                 float koef = 120;
-                CaloriesLeft = user.Weight * koef - (float)TotalCalories;
+                CaloriesLeft = User.Weight * koef - (float)TotalCalories;
 
-                ChangeBreakfast = new PersonalNavigateCommand<ChangeMealViewModel>(
-                   new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
+                OpenBreakfast = new PersonalNavigateCommand<AdminUserMealHistoty>(
+                   new PersonalNavigationService<AdminUserMealHistoty>(personalNavigationStore,
                    () =>
                    {
-                       return new ChangeMealViewModel(personalNavigationStore, SelectedDate, MealType.Breakfast);
+                       return new AdminUserMealHistoty(personalNavigationStore, SelectedDate, MealType.Breakfast, User);
                    }));
 
-                ChangeLunch = new PersonalNavigateCommand<ChangeMealViewModel>(
-                  new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
+                OpenLunch = new PersonalNavigateCommand<AdminUserMealHistoty>(
+                  new PersonalNavigationService<AdminUserMealHistoty>(personalNavigationStore,
                   () =>
                   {
-                      return new ChangeMealViewModel(personalNavigationStore, SelectedDate, MealType.Lunch);
+                      return new AdminUserMealHistoty(personalNavigationStore, SelectedDate, MealType.Lunch, User);
                   }));
 
-                ChangeDinner = new PersonalNavigateCommand<ChangeMealViewModel>(
-                  new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
+                OpenDinner = new PersonalNavigateCommand<AdminUserMealHistoty>(
+                  new PersonalNavigationService<AdminUserMealHistoty>(personalNavigationStore,
                   () =>
                   {
-                      return new ChangeMealViewModel(personalNavigationStore, SelectedDate, MealType.Dinner);
+                      return new AdminUserMealHistoty(personalNavigationStore, SelectedDate, MealType.Dinner, User);
                   }));
+
+                ChangeAdminCalories = new AdminChangeCalories(this);
             }
             catch
             {
                 MessageBox.Show("Can't load user ptofile");
             }
         }
-
     }
 }
