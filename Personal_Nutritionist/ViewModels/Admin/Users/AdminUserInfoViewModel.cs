@@ -185,7 +185,7 @@ namespace Personal_Nutritionist.ViewModels
                         });
                     }
                 });
-                float koef = 120;
+                float koef = 4.3f;
                 CaloriesLeft = User.Weight * koef - (float)TotalCalories;
 
                 OpenBreakfast = new PersonalNavigateCommand<AdminUserMealHistoty>(

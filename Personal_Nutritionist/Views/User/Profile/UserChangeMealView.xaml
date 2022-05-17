@@ -51,10 +51,15 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
-                    
+
                 </ListView.View>
             </ListView>
-            <Button Content="Add recipe" 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Add recipe" 
                 Margin="0 30 100 10" 
                 Command="{Binding NavigateUserAddRecipeMeal}" 
                 Width="180" 
@@ -63,8 +68,18 @@
                 BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black"
                 Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
-            </Button>
-
+                </Button>
+                <Button Content="Add product"  Grid.Column="1"
+                Margin="0 30 100 10" 
+                Command="{Binding NavigateUserAddProductMeal}" 
+                Width="180" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                BorderBrush="#8408c7" Background="#c678f0" 
+                Foreground="Black"
+                Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
+                </Button>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

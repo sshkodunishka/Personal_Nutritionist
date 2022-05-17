@@ -63,6 +63,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:AddMealRecipe}">
                         <views:AddMealRecipe/>
                     </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:AddMealProduct}">
+                        <views:AddMealProduct/>
+                    </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content= "{Binding CurrentPersonalViewModel}"/>
             </Grid>

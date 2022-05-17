@@ -28,7 +28,7 @@ namespace Personal_Nutritionist.Command
         {
             if (_viewModel.Login != null && _viewModel.Password != null &&
                 _viewModel.Name != null && _viewModel.Surname != null &&
-                _viewModel.Age != 0 && _viewModel.Weight != 0)
+                _viewModel.Age != 0 && _viewModel.Weight != 0 && _viewModel.Height != 0)
                 return true;
             else
                 return false;
@@ -47,13 +47,13 @@ namespace Personal_Nutritionist.Command
 
                 if (repository.Get(x => x.Login == _viewModel.Login).Any())
                 {
-                    _viewModel.IsOpen = true;
+                    _viewModel.Error = "This login is already taken";
                 }
                 else
                 {
                     Role role = repositoryRole.Get(x => x.RoleName == RoleType.User).First();
                     _viewModel.Password = User.getHash(_viewModel.Password);
-                    user = new User(_viewModel.Login, _viewModel.Password, _viewModel.Name, _viewModel.Surname, _viewModel.Weight, _viewModel.Age,  role.RoleId);
+                    user = new User(_viewModel.Login, _viewModel.Password, _viewModel.Name, _viewModel.Surname, _viewModel.Weight, _viewModel.Age,  role.RoleId, _viewModel.Height, _viewModel.SexType);
                     repository.Create(user);
 
                     Account account = Account.getInstance(user);

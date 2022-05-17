@@ -1,4 +1,5 @@
 ﻿using Personal_Nutritionist.Command;
+using Personal_Nutritionist.DataLayer;
 using Personal_Nutritionist.Services;
 using Personal_Nutritionist.Stores;
 using System;
@@ -80,16 +81,57 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        private bool _isOpen;
-        public bool IsOpen
+        private int _height;
+        public int Height
         {
-            get { return _isOpen; }
+            get => _height;
             set
             {
-                if (_isOpen == value)
+                _height = value;
+                OnPropertyChanged(nameof(Height));
+            }
+        }
+
+        SexType sexType = SexType.Female;
+
+        public SexType SexType
+        {
+            get { return sexType; }
+            set
+            {
+                if (sexType == value)
                     return;
-                _isOpen = value;
-                OnPropertyChanged(nameof(IsOpen));
+
+                sexType = value;
+                OnPropertyChanged("SexType");
+                OnPropertyChanged("IsFemale");
+                OnPropertyChanged("IsMale");
+            }
+        }
+
+        public bool IsFemale
+        {
+            get { return SexType == SexType.Female; }
+            set { SexType = value ? SexType.Female : SexType; }
+        }
+
+        public bool IsMale
+        {
+            get { return SexType == SexType.Male; }
+            set { SexType = value ? SexType.Male : SexType; }
+        }
+
+        
+        private string _error;
+        public string Error
+        {
+            get { return _error; }
+            set
+            {
+                if (_error == value)
+                    return;
+                _error = value;
+                OnPropertyChanged(nameof(Error));
             }
         }
 
@@ -120,7 +162,6 @@ namespace Personal_Nutritionist.ViewModels
                     new NavigationService<LoginViewModel>(navigationStore,
                     () => new LoginViewModel(navigationStore, personalNavigationStore)));
                 
-                //Ok = new OkPopUpCommand(this);
             }
             catch
             {

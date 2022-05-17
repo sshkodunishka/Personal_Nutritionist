@@ -17,6 +17,8 @@ namespace Personal_Nutritionist.DataLayer
         public string Surname { get; set; }
         public float Weight { get; set; }
         public int Age { get; set; }
+        public int Height { get; set; }
+        public SexType Sex { get; set; }
 
         public int RoleId { get; set; }
         public Role Role { get; set; }
@@ -40,7 +42,7 @@ namespace Personal_Nutritionist.DataLayer
             RoleId = roleId;
         }
 
-        public User(string login, string password, string name, string surname, float weight, int age, int roleId)
+        public User(string login, string password, string name, string surname, float weight, int age, int roleId, int height, SexType sex)
         {
             Login = login;
             Password = password;
@@ -49,6 +51,8 @@ namespace Personal_Nutritionist.DataLayer
             Weight = weight;
             Age = age;
             RoleId = roleId;
+            Height = height;
+            Sex = sex;
         }
 
         public static string getHash(string password)

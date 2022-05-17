@@ -35,16 +35,23 @@
                 </ListView.ItemContainerStyle>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Recipe name</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Description}">Recipe Description</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=Calories}">Calories</GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding Path=User.Name}">User Name</GridViewColumn>
-                        <GridViewColumn Width="80">
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Name}">Recipe name</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Description}">Recipe Description</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Calories}">Calories</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.User.Name}">User Name</GridViewColumn>
+                        <GridViewColumn Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="Like"
+                                    <StackPanel>
+                                    <Button  x:Name="Like"
                                             Content="Like"
+                                             Visibility="{Binding isNotFavorite, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"
                                             Command="{Binding Path=DataContext.AddFavoriteCommand,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
+                                    <Button  x:Name="Dislike"
+                                            Content="Dislike"
+                                             Visibility="{Binding isFavorite, Converter={StaticResource BoolToVis }, FallbackValue=Hidden}"
+                                            Command="{Binding Path=DataContext.DeleteFavoriteCommand,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

@@ -122,7 +122,7 @@ namespace Personal_Nutritionist.Command
                     });
 
 
-                    float koef = 120;
+                    float koef = 4.3f;
                     _user_viewModel.CaloriesLeft = user.Weight * koef - (float)_user_viewModel.TotalCalories;
                 }
                 if (_admin_viewModel != null)

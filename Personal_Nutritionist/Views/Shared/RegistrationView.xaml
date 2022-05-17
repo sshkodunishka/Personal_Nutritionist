@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              MinHeight="600">
-    <Grid Height="650" Width="500">
+    <Grid Height="700" Width="500">
         <!--<Popup x:Name="popup"  Placement="Center" StaysOpen="False" IsOpen="{Binding IsOpen, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" AllowsTransparency="True"  >
             --><!--<Grid Background="#AED3B9">
                 <StackPanel>
@@ -29,19 +29,19 @@
         </Rectangle>
 
         <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="25" Foreground="#4d5680" FontSize="22"/>
-        <Rectangle Height="389" Fill="White" VerticalAlignment="Bottom" Margin="35,0,35,90" RadiusY="25" RadiusX="25">
+        <Rectangle Height="500" Fill="White" VerticalAlignment="Bottom" Margin="35,0,35,90" RadiusY="25" RadiusX="25">
             <Rectangle.Effect>
                 <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
             </Rectangle.Effect>
         </Rectangle>
 
-        <Grid Height="389" VerticalAlignment="Bottom" Margin="35,0,35,90">
-            <TextBlock Text="Registration" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" Foreground="#4d5680" FontSize="22"/>
-            <StackPanel VerticalAlignment="Center" Margin="10,20">
+        <Grid  Height="450" VerticalAlignment="Bottom" Margin="35,0,35,90">
+            <TextBlock Text="Registration" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0" Foreground="#4d5680" FontSize="22"/>
+            <StackPanel VerticalAlignment="Center" Margin="10,10">
                 <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Login"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                          Margin="0,10"
-                         FontSize="16"
+                         FontSize="14"
                          MaxLength="40">
                     <TextBox.Text>
                         <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
@@ -51,7 +51,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="Password" FontSize="16">
+                <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="Password" FontSize="14">
                     <PasswordBox.Style>
                         <Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
                             <Style.Setters>
@@ -71,7 +71,7 @@
                 </PasswordBox>
                 <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Name"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Margin="0,10" FontSize="16">
+                         Margin="0,10" FontSize="14">
                     <TextBox.Text>
                         <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -84,7 +84,7 @@
                 </TextBox>
                 <TextBox x:Name="surnameTextBox" materialDesign:HintAssist.Hint="Surname" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Margin="0,10" FontSize="16">
+                         Margin="0,10" FontSize="14">
                     <TextBox.Text>
                         <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -95,7 +95,7 @@
                 </TextBox>
                 <TextBox x:Name="ageTextBox" materialDesign:HintAssist.Hint="Age"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Margin="0,10" FontSize="16">
+                         Margin="0,10" FontSize="14">
                     <TextBox.Text>
                         <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -106,26 +106,66 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox x:Name="weightTextBox" materialDesign:HintAssist.Hint="Weight"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="weightTextBox" materialDesign:HintAssist.Hint="Weight"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                         Margin="0,10" FontSize="16">
-                    <TextBox.Text>
-                        <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <valid:NotEmptyFieldRule/>
-                                <!--<valid:NotContainSpaceRule/>
+                             HorizontalAlignment="Left"
+                              Width="80"
+                         Margin="0 0 0 0" FontSize="14">
+                        <TextBox.Text>
+                            <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <valid:NotEmptyFieldRule/>
+                                    <!--<valid:NotContainSpaceRule/>
                                 <valid:OnlyLettersRule/>-->
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox x:Name="heightTextBox" materialDesign:HintAssist.Hint="Height"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                           Grid.Column="1"
+                             Width="80"
+                         Margin="0 0 0 0"  FontSize="14">
+                        <TextBox.Text>
+                            <Binding Path="Height" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <valid:NotEmptyFieldRule/>
+                                    <!--<valid:NotContainSpaceRule/>
+                                <valid:OnlyLettersRule/>-->
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <Label FontWeight="Bold">Select your gender</Label>
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                   
+                        <StackPanel>
+                            <RadioButton Content="Female" IsChecked="{Binding IsFemale}" Margin="3"/>
+                            <RadioButton Content="Male" IsChecked="{Binding IsMale}" Margin="3"/>
+                        </StackPanel>
+                   
+
+                </Grid>
+                <Label Content="{Binding Error}" Foreground="Red"/>
             </StackPanel>
         </Grid>
         <Button Content="Registration" 
                 Command="{Binding ToProfile}" 
                 Width="150" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Bottom" Margin="0,0,0,70" 
+                VerticalAlignment="Bottom" Margin="0,0,0,65" 
               BorderBrush="#8408c7" Background="#c678f0" 
                 Foreground="Black" RenderTransformOrigin="0.49,2.355">
             <Button.Style >

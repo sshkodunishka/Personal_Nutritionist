@@ -79,6 +79,7 @@ namespace Personal_Nutritionist.ViewModels
 
         public ICommand DeleteMeal { get; }
         public ICommand NavigateUserAddRecipeMeal { get; }
+        public ICommand NavigateUserAddProductMeal { get; }
 
         public ChangeMealViewModel(PersonalNavigationStore personalNavigationStore, DateTime selectedDate, MealType mealType)
         {
@@ -119,6 +120,12 @@ namespace Personal_Nutritionist.ViewModels
                   () =>
                   {
                       return new AddMealRecipe(personalNavigationStore, SelectedDate, SelectedType);
+                  }));
+                NavigateUserAddProductMeal = new PersonalNavigateCommand<AddMealProduct>(
+                  new PersonalNavigationService<AddMealProduct>(personalNavigationStore,
+                  () =>
+                  {
+                      return new AddMealProduct(personalNavigationStore, SelectedDate, SelectedType);
                   }));
             }
             catch

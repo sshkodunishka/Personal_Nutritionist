@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Personal_Nutritionist.ViewModels
 {
-    public class AddMealRecipe : ViewModelBase
+    public class AddMealProduct : ViewModelBase
     {
         public DateTime _selectedDate;
         public DateTime SelectedDate
@@ -36,45 +38,46 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        public ObservableCollection<Recipe> _recipes;
-        public ObservableCollection<Recipe> Recipes
+        public ObservableCollection<Product> _products;
+        public ObservableCollection<Product> Products
         {
-            get => _recipes;
+            get => _products;
             set
             {
-                _recipes = value;
-                OnPropertyChanged(nameof(Recipes));
+                _products = value;
+                OnPropertyChanged(nameof(Products));
             }
         }
 
-        public Recipe _selectedRecipe;
-        public Recipe SelectedRecipe
+        public Product _selectedProduct;
+        public Product SelectedProduct
         {
-            get => _selectedRecipe;
+            get => _selectedProduct;
             set
             {
-                _selectedRecipe = value;
-                OnPropertyChanged(nameof(SelectedRecipe));
+                _selectedProduct = value;
+                OnPropertyChanged(nameof(SelectedProduct));
             }
         }
 
-        public ICommand AddMealRecipeCommand { get; }
+        public ICommand AddMealProductCommand { get; }
         public ICommand BackToChangeMeal { get; }
 
-        public AddMealRecipe(PersonalNavigationStore personalNavigationStore, DateTime selectedDate, MealType mealType)
+        public AddMealProduct(PersonalNavigationStore personalNavigationStore, DateTime selectedDate, MealType mealType)
         {
             try
             {
                 SelectedDate = selectedDate;
                 SelectedType = mealType;
                 Context context = new Context();
-                Repository<Recipe> repositoryRecipe = new Repository<Recipe>(context);
+                Repository<Product> repositoryRecipe = new Repository<Product>(context);
                 User user = Account.getInstance(null).CurrentUser;
-                List<Recipe> recipes = repositoryRecipe
+                List<Product> products = repositoryRecipe
                     .GetWithInclude(x => x.UserId == user.UserId || x.User.Role.RoleName == RoleType.Admin, y => y.User, y => y.User.Role).ToList();
-                Recipes = new ObservableCollection<Recipe>(recipes);
+                Products = new ObservableCollection<Product>(products);
 
-                AddMealRecipeCommand = new Command.AddMealRecipe(this, personalNavigationStore);
+                AddMealProductCommand = new Command.AddMealProduct(this, personalNavigationStore);
+
                 BackToChangeMeal = new PersonalNavigateCommand<ChangeMealViewModel>(
                   new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
                   () =>

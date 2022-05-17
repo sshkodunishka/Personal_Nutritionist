@@ -169,7 +169,7 @@ namespace Personal_Nutritionist.ViewModels
                         });
                     }
                 });
-                float koef = 120;
+                float koef = 4.3f;
                 CaloriesLeft = user.Weight * koef - (float)TotalCalories;
 
                 ChangeBreakfast = new PersonalNavigateCommand<ChangeMealViewModel>(

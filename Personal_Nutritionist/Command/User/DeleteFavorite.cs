@@ -34,7 +34,7 @@ namespace Personal_Nutritionist.Command
                 User user = Account.getInstance(null).CurrentUser;
 
 
-                var id = _viewModel.SelectedFavorite.RecipeId;
+                var id = _viewModel.SelectedFavorite.FavoritesId;
                 _viewModel.Favorites = new ObservableCollection<Favorites>(
                     _viewModel.Favorites.Where(f => f.RecipeId != _viewModel.SelectedFavorite.RecipeId));
                 var food = favoriteRepository.FindById(id);

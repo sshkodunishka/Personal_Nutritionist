@@ -1,4 +1,4 @@
-﻿ using Personal_Nutritionist.Command;
+﻿using Personal_Nutritionist.Command;
 using Personal_Nutritionist.DataLayer;
 using Personal_Nutritionist.DataLayer.Repository;
 using Personal_Nutritionist.Services;
@@ -14,10 +14,27 @@ using System.Windows.Input;
 
 namespace Personal_Nutritionist.ViewModels
 {
+
+    public class RecipeView
+    {
+        public Recipe Recipe { get; set; }
+        public bool isFavorite { get; set; }
+        public bool isNotFavorite { get; set; }
+        public int? FavoriteId { get; set; }
+
+        public RecipeView(Recipe recipe, bool isFavorite, bool isNotFavorite, int? favoriteId)
+        {
+            Recipe = recipe;
+            this.isFavorite = isFavorite;
+            this.isNotFavorite = isNotFavorite;
+            FavoriteId = favoriteId;
+        }
+    }
+
     public class UserRecipeViewModel : ViewModelBase
     {
-        private ObservableCollection<Recipe> _recipes;
-        public ObservableCollection<Recipe> Recipes
+        private ObservableCollection<RecipeView> _recipes;
+        public ObservableCollection<RecipeView> Recipes
         {
             get => _recipes;
             set
@@ -27,8 +44,8 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        public Recipe _selectedRecipe;
-        public Recipe SelectedRecipe
+        public RecipeView _selectedRecipe;
+        public RecipeView SelectedRecipe
         {
             get => _selectedRecipe;
             set
@@ -41,6 +58,7 @@ namespace Personal_Nutritionist.ViewModels
         public ICommand OpenRecipe { get; }
         public ICommand NavigateUserAddRecipe { get; }
         public ICommand AddFavoriteCommand { get; }
+        public ICommand DeleteFavoriteCommand { get; }
 
         public UserRecipeViewModel(PersonalNavigationStore personalNavigationStore)
         {
@@ -48,13 +66,25 @@ namespace Personal_Nutritionist.ViewModels
             {
                 Context context = new Context();
                 Repository<Recipe> repositoryRecipe = new Repository<Recipe>(context);
+                Repository<Favorites> repositoryFavorite = new Repository<Favorites>(context);
                 Repository<User> repositoryUser = new Repository<User>(context);
 
                 User currentUser = Account.getInstance(null).CurrentUser;
 
                 List<Recipe> recipes = repositoryRecipe.GetWithInclude(x => x.User.Role.RoleName == RoleType.Admin
                 || x.UserId == currentUser.UserId, y => y.User, z => z.User.Role).ToList();
-                Recipes = new ObservableCollection<Recipe>(recipes);
+
+
+                List<Favorites> favorites = repositoryFavorite.Get(x => x.UserId == currentUser.UserId).ToList();
+                List<RecipeView> recipeViews = new List<RecipeView>();
+                recipes.ForEach(recipe =>
+                {
+                    Favorites? favorite = favorites.Find((favorite) => favorite.RecipeId == recipe.RecipeId);
+                    RecipeView recipeView = new RecipeView(recipe, favorite != null, favorite == null, favorite?.FavoritesId);
+                    recipeViews.Add(recipeView);
+                });
+
+                Recipes = new ObservableCollection<RecipeView>(recipeViews);
 
                 OpenRecipe = new PersonalNavigateCommand<UserRecipeInfoViewModel>(
                     new PersonalNavigationService<UserRecipeInfoViewModel>(personalNavigationStore,
@@ -62,7 +92,7 @@ namespace Personal_Nutritionist.ViewModels
                     {
                         if (SelectedRecipe == null)
                             return null;
-                        return new UserRecipeInfoViewModel(personalNavigationStore, SelectedRecipe);
+                        return new UserRecipeInfoViewModel(personalNavigationStore, SelectedRecipe.Recipe);
                     }));
 
                 NavigateUserAddRecipe = new PersonalNavigateCommand<UserAddRecipeViewModel>(
@@ -73,6 +103,7 @@ namespace Personal_Nutritionist.ViewModels
                    }));
 
                 AddFavoriteCommand = new AddFavorite(this);
+                DeleteFavoriteCommand = new DeleteFavoriteCommand(this);
 
             }
             catch
