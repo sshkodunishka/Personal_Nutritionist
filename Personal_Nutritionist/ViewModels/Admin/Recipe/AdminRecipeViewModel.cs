@@ -40,6 +40,7 @@ namespace Personal_Nutritionist.ViewModels
 
         public ICommand OpenRecipe { get; }
         public ICommand NavigateAdminAddRecipe { get; }
+        public ICommand AdminDeleteRecipe { get; }
 
         public AdminRecipeViewModel(PersonalNavigationStore personalNavigationStore)
         {
@@ -69,6 +70,10 @@ namespace Personal_Nutritionist.ViewModels
                    {
                        return new AddRecipeViewModel(personalNavigationStore);
                    }));
+
+                AdminDeleteRecipe = new AdminDeleteRecipe(this);
+
+
             }
             catch
             {

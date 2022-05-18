@@ -19,7 +19,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Products" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
-            <ListView x:Name="linksListView" Grid.Row="1"
+            <ListView x:Name="linksListView" Grid.Row="1"  SelectedItem="{Binding SelectedProduct}"
                       ItemsSource="{Binding Products}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem" BasedOn="{StaticResource MaterialDesignGridViewItem}">
@@ -38,6 +38,16 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Product name</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Calories}">Calories</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=User.Name}">User Name</GridViewColumn>
+                        <GridViewColumn Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  BorderBrush="#8408c7" Background="#c678f0" 
+                                             x:Name="Delete"
+                                            Content="Delete"
+                                            Command="{Binding Path=DataContext.AdminDeleteProduct,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
               

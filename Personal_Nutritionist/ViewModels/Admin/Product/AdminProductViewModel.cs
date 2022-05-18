@@ -28,7 +28,19 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
+        public Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get => _selectedProduct;
+            set
+            {
+                _selectedProduct = value;
+                OnPropertyChanged(nameof(SelectedProduct));
+            }
+        }
+
         public ICommand NavigateAdminAddProduct { get; }
+        public ICommand AdminDeleteProduct { get; }
 
         public AdminProductViewModel(PersonalNavigationStore personalNavigationStore)
         {
@@ -49,6 +61,9 @@ namespace Personal_Nutritionist.ViewModels
                    {
                        return new AdminAddProductViewModel(personalNavigationStore);
                    }));
+
+                AdminDeleteProduct = new AdminDeleteProduct(this);
+
             }
             catch
             {

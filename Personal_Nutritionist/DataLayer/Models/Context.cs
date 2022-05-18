@@ -33,33 +33,34 @@ namespace Personal_Nutritionist.DataLayer
             modelBuilder.Entity<RecipeProduct>()
                 .HasOne(bc => bc.Recipe)
                 .WithMany(b => b.RecipeProducts)
-                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<RecipeProduct>()
                 .HasOne(bc => bc.Product)
                 .WithMany(c => c.RecipeProducts)
-                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.NoAction);
 
             
             modelBuilder.Entity<Favorites>()
                 .HasOne(bc => bc.Recipe)
                 .WithMany(b => b.Favorites)
-                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Favorites>()
                 .HasOne(bc => bc.User)
                 .WithMany(c => c.Favorites)
-                .HasForeignKey(bc => bc.UserId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(bc => bc.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<MealFood>()
                 .HasOne(bc => bc.Recipe)
                 .WithMany(b => b.MealFoods).IsRequired(false)
-                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.Restrict).IsRequired(false);
+                .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.ClientCascade).IsRequired(false);
+
 
             modelBuilder.Entity<MealFood>()
                 .HasOne(bc => bc.Product)
                 .WithMany(c => c.MealFoods).IsRequired(false)
-                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.Restrict).IsRequired(false);
+                .HasForeignKey(bc => bc.ProductId).OnDelete(DeleteBehavior.ClientCascade).IsRequired(false);
         }
     }
 }

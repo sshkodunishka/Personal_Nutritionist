@@ -121,9 +121,24 @@ namespace Personal_Nutritionist.Command
                         });
                     });
 
+                    float k1 = 655.1f;
+                    float k2 = 9.563f;
+                    float k3 = 1.85f;
+                    float k4 = 4.676f;
+                    float k5 = 66.5f;
+                    float k6 = 13.78f;
+                    float k7 = 5.003f;
+                    float k8 = 6.775f;
+                    if (user.Sex == 0)
+                    {
+                        _user_viewModel.CaloriesLeft = (int)(k1 + k2 * user.Weight + k3 * user.Height - k4 * user.Age - (float)_user_viewModel.TotalCalories);
 
-                    float koef = 4.3f;
-                    _user_viewModel.CaloriesLeft = user.Weight * koef - (float)_user_viewModel.TotalCalories;
+                    }
+                    else
+                    {
+                        _user_viewModel.CaloriesLeft = (int)(k5 + k6 * user.Weight + k7 * user.Height - k8 * user.Age - (float)_user_viewModel.TotalCalories);
+
+                    }
                 }
                 if (_admin_viewModel != null)
                 {
@@ -204,8 +219,25 @@ namespace Personal_Nutritionist.Command
                         });
                     });
 
-                    float koef = 4.3f;
-                    _admin_viewModel.CaloriesLeft = _admin_viewModel.User.Weight * koef - (float)_admin_viewModel.TotalCalories;
+
+                    float k1 = 655.1f;
+                    float k2 = 9.563f;
+                    float k3 = 1.85f;
+                    float k4 = 4.676f;
+                    float k5 = 66.5f;
+                    float k6 = 13.78f;
+                    float k7 = 5.003f;
+                    float k8 = 6.775f;
+                    if (_admin_viewModel.User.Sex == 0)
+                    {
+                        _admin_viewModel.CaloriesLeft = (int)(k1 + k2 * _admin_viewModel.User.Weight + k3 * _admin_viewModel.User.Height - k4 * _admin_viewModel.User.Age - (float)_admin_viewModel.TotalCalories);
+
+                    }
+                    else
+                    {
+                        _admin_viewModel.CaloriesLeft =(int)( k5 + k6 * _admin_viewModel.User.Weight + k7 * _admin_viewModel.User.Height - k8 * _admin_viewModel.User.Age - (float)_admin_viewModel.TotalCalories);
+
+                    }
                 }
             }
             catch

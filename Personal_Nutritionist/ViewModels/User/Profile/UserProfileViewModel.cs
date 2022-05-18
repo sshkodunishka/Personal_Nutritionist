@@ -169,8 +169,25 @@ namespace Personal_Nutritionist.ViewModels
                         });
                     }
                 });
-                float koef = 4.3f;
-                CaloriesLeft = user.Weight * koef - (float)TotalCalories;
+               
+                float k1 = 655.1f;
+                float k2 = 9.563f;
+                float k3 = 1.85f;
+                float k4 = 4.676f;
+                float k5 = 66.5f;
+                float k6 = 13.78f;
+                float k7 = 5.003f;
+                float k8 = 6.775f;
+                if (user.Sex == 0)
+                {
+                    CaloriesLeft = (int)(k1 + k2 * user.Weight + k3 * user.Height - k4 * user.Age - (float)TotalCalories);
+
+                }
+                else
+                {
+                    CaloriesLeft = (int)(k5 + k6 * user.Weight + k7 * user.Height - k8 * user.Age - (float)TotalCalories);
+
+                }
 
                 ChangeBreakfast = new PersonalNavigateCommand<ChangeMealViewModel>(
                    new PersonalNavigationService<ChangeMealViewModel>(personalNavigationStore,
