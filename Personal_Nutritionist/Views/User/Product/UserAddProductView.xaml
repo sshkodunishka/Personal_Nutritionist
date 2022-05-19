@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="New product" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="New product" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#29023d" FontSize="22"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                 <StackPanel VerticalAlignment="Center" Margin="20,0,0,0" Width="200">
                     <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Name" 
@@ -29,6 +29,7 @@
                             <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <valid:NotEmptyFieldRule/>
+                                    <valid:OnlyLettersRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -41,6 +42,7 @@
                             <Binding Path="Calories" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <valid:NotEmptyFieldRule/>
+                                    <valid:OnlyNumsRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -57,7 +59,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,35" 
-                BorderBrush="#8408c7" Background="#c678f0" 
+                   BorderBrush="#180124" Background="#c678f0" 
                 Foreground="Black" Cursor="Hand">
             <Button.Style >
                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">

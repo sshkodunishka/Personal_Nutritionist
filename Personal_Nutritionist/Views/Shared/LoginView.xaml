@@ -12,13 +12,15 @@
         <Rectangle Height="280" VerticalAlignment="Top" Grid.RowSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#f5d058"/>
-                    <GradientStop Color="#f2ac0a" Offset="1"/>
-                    <GradientStop Color="#f2c635" Offset="0.5"/>
+                    <GradientStop Color="#dcb5ee"/>
+                    <GradientStop Color="#8408c7" Offset="1"/>
+                    <GradientStop Color="#b36cdb" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock Text="Personal Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="25" Foreground="#4d5680" FontSize="22"/>
+        <TextBlock Text="Personal Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,26,0,0" Foreground="#29023d" FontSize="22"/>
+        <Image x:Name="image" Source="../../Image/home.png"  Width="100" Height="120" VerticalAlignment="Top"  Margin="60" Stretch="Uniform" StretchDirection="Both"/>
+
         <Rectangle Height="252" Fill="White" VerticalAlignment="Bottom" Margin="35,0,35,88" RadiusY="25" RadiusX="25">
             <Rectangle.Effect>
                 <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
@@ -37,6 +39,7 @@
                         <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <valid:NotEmptyFieldRule/>
+                                <valid:NotContainSpaceRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -51,6 +54,7 @@
                                         <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                             <Binding.ValidationRules>
                                                 <valid:NotEmptyFieldRule/>
+                                                <valid:NotContainSpaceRule/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </Setter.Value>
@@ -66,7 +70,7 @@
                 Command="{Binding LoginCommand}" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
-                Margin="0,115"  BorderBrush="#8408c7" Background="#c678f0"  Foreground="Black" Cursor="Hand">
+                Margin="0,115"  BorderBrush="#8408c7" Background="#c678f0"  Foreground="#29023d" Cursor="Hand">
             <Button.Style >
                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -87,6 +91,6 @@
                 Width="150" HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Margin="0,75" 
                  BorderBrush="#8408c7" Background="#c678f0" 
-                Foreground="Black" Cursor="Hand"/>
+                Foreground="#29023d" Cursor="Hand"/>
     </Grid>
 </UserControl>

@@ -9,26 +9,20 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              MinHeight="600">
     <Grid Height="700" Width="500">
-        <!--<Popup x:Name="popup"  Placement="Center" StaysOpen="False" IsOpen="{Binding IsOpen, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" AllowsTransparency="True"  >
-            --><!--<Grid Background="#AED3B9">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="30" Text="User with such email exists"/>
-                    <Button Content="Ok" Command="{Binding Ok}" Width="50" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,35" BorderBrush="#FCC67C" Background="#FCC67C" Foreground="Black">
-                    </Button>
-                </StackPanel>
-            </Grid>--><!--
-        </Popup>-->
+     
         <Rectangle Height="280" VerticalAlignment="Top" Grid.RowSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#f5d058"/>
-                    <GradientStop Color="#f2ac0a" Offset="1"/>
-                    <GradientStop Color="#f2c635" Offset="0.5"/>
+                    <GradientStop Color="#dcb5ee"/>
+                    <GradientStop Color="#8408c7" Offset="1"/>
+                    <GradientStop Color="#b36cdb" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
 
-        <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="25" Foreground="#4d5680" FontSize="22"/>
+        <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="25" Foreground="#29023d" FontSize="22"/>
+        <Image x:Name="image" Source="../../Image/home.png"  Width="100" Height="120" VerticalAlignment="Top"  Margin="60" Stretch="Uniform" StretchDirection="Both"/>
+
         <Rectangle Height="500" Fill="White" VerticalAlignment="Bottom" Margin="35,0,35,90" RadiusY="25" RadiusX="25">
             <Rectangle.Effect>
                 <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
@@ -36,7 +30,7 @@
         </Rectangle>
 
         <Grid  Height="450" VerticalAlignment="Bottom" Margin="35,0,35,90">
-            <TextBlock Text="Registration" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="Registration" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0" Foreground="#29023d" FontSize="22"/>
             <StackPanel VerticalAlignment="Center" Margin="10,10">
                 <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Login"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
@@ -47,6 +41,7 @@
                         <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <valid:NotEmptyFieldRule/>
+                                <valid:NotContainSpaceRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -61,6 +56,8 @@
                                         <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                             <Binding.ValidationRules>
                                                 <valid:NotEmptyFieldRule/>
+                                                <valid:PasswordRule/>
+                                                <valid:NotContainSpaceRule/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </Setter.Value>
@@ -76,8 +73,8 @@
                         <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <valid:NotEmptyFieldRule/>
-                                <!--<valid:NotContainSpaceRule/>
-                                <valid:OnlyLettersRule/>-->
+                                <valid:NotContainSpaceRule/>
+                                <valid:OnlyLettersRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -89,6 +86,8 @@
                         <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <valid:NotEmptyFieldRule/>
+                                <valid:NotContainSpaceRule/>
+                                <valid:OnlyLettersRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -100,8 +99,8 @@
                         <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <valid:NotEmptyFieldRule/>
-                                <!--<valid:NotContainSpaceRule/>
-                                <valid:OnlyLettersRule/>-->
+                                <valid:NotContainSpaceRule/>
+                                <valid:OnlyNumsRule/>
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -120,8 +119,8 @@
                             <Binding Path="Weight" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <valid:NotEmptyFieldRule/>
-                                    <!--<valid:NotContainSpaceRule/>
-                                <valid:OnlyLettersRule/>-->
+                                    <valid:NotContainSpaceRule/>
+                                    <valid:OnlyNumsRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -135,8 +134,8 @@
                             <Binding Path="Height" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <valid:NotEmptyFieldRule/>
-                                    <!--<valid:NotContainSpaceRule/>
-                                <valid:OnlyLettersRule/>-->
+                                    <valid:NotContainSpaceRule/>
+                                <valid:OnlyNumsRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
@@ -167,7 +166,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Margin="0,0,0,65" 
               BorderBrush="#8408c7" Background="#c678f0" 
-                Foreground="Black" RenderTransformOrigin="0.49,2.355">
+                Foreground="#29023d" RenderTransformOrigin="0.49,2.355">
             <Button.Style >
                 <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -190,6 +189,6 @@
                 Width="150" HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" Margin="0,25" 
                  BorderBrush="#8408c7" Background="#c678f0" 
-                Foreground="Black" Cursor="Hand"/>
+                Foreground="#29023d" Cursor="Hand"/>
     </Grid>
 </UserControl>

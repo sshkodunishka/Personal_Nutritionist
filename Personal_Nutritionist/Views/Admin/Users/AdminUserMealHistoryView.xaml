@@ -49,7 +49,7 @@
                 Width="180" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
-                BorderBrush="#8408c7" Background="#c678f0" 
+                BorderBrush="#180124" Background="#c678f0" 
                 Foreground="Black"
                 Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
             </Button>

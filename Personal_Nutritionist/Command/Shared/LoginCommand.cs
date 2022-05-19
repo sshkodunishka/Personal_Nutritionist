@@ -71,7 +71,7 @@ namespace Personal_Nutritionist.Command
                     }
                     else
                     {
-                        _viewModel.Error = "No user with such email";
+                        _viewModel.Error = "No user with such login";
                     }
                 }
             }

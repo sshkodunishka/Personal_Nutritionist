@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Users" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="Users" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#29023d" FontSize="22"/>
             <ListView x:Name="linksListView" Grid.Row="1" SelectedItem="{Binding SelectedUser}"
                       ItemsSource="{Binding Users}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>

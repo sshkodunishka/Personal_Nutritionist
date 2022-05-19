@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Personal_Nutritionist.Views"
+             xmlns:local="clr-namespace:Personal_Nutritionist.Views" xmlns:viewmodels="clr-namespace:Personal_Nutritionist.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserRecipeInfoViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -21,14 +21,14 @@
                       VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" 
                        Foreground="#4d5680" FontSize="16"/>
             <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" 
-                            Width="200" >
-                <TextBlock Text="{Binding Recipe.User.Name, StringFormat=Name of creator: {0}}"
+                            Width="650">
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Recipe.User.Name, StringFormat=Name of creator: {0}}"
                                Style="{StaticResource MaterialDesignBody2TextBlock}"
                                FontSize="16"/>
-                <TextBlock FontSize="14" Text="Description:" />
-                <TextBlock Text="{Binding Recipe.Description}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="12"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Description:" Foreground="#29023d"/>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Recipe.Description}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="12"/>
             </StackPanel>
         </Grid>
-        <Button Content="Send request" Command="{Binding SendRequest}" Width="180" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,35" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black" Cursor="Hand"/>
+        <Button Content="Back" Command="{Binding BackToRecipe}" Width="180" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,35"    BorderBrush="#180124" Background="#c678f0"  Foreground="Black" Cursor="Hand"/>
     </Grid>
 </UserControl>

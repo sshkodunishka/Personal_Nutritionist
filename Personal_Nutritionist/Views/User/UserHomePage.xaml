@@ -8,12 +8,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Rectangle Height="450" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Rectangle Height="450"  VerticalAlignment="Top" Grid.RowSpan="2">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#f5d058"/>
-                    <GradientStop Color="#f2ac0a" Offset="1"/>
-                    <GradientStop Color="#f2c635" Offset="0.5"/>
+                    <GradientStop Color="#dcb5ee"/>
+                    <GradientStop Color="#8408c7" Offset="1"/>
+                    <GradientStop Color="#b36cdb" Offset="0.5"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
@@ -22,17 +22,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Background="#f5d058"  Grid.Column="0">
-                <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" Foreground="#4d5680" FontSize="16"/>
-                <!--<Image Source="../../Image/image.png" Width="40" Height="40" VerticalAlignment="Top"/>-->
+            <StackPanel Orientation="Vertical" Background="#c891e5"  Grid.Column="0">
+                <TextBlock Text="Personal_Nutritionist" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5" Foreground="#29023d" FontSize="16"/>
+                <Image Source="../../Image/home.png" Width="60" Height="50" VerticalAlignment="Top"/>
                 <StackPanel Margin="0,20">
-                    <Button Content="Профиль" Command="{Binding ProfileCommand}"
-                            Width="200" HorizontalAlignment="Center" BorderBrush="#8408c7"  Background="#c678f0" Foreground="Black" Cursor="Hand"/>
-                    <Button Content="Рецепты" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black" Cursor="Hand"/>
-                    <Button Content="Продукты" Command="{Binding ProductCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black"/>
-                    <Button Content="Избранные" Command="{Binding FavoriteCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black"/>
+                    <Button Content="Profile" Command="{Binding ProfileCommand}"
+                            Width="200" HorizontalAlignment="Center" BorderBrush="#180124"  Background="#8408c7" Foreground="Black" Cursor="Hand"/>
+                    <Button Content="Recipes" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black" Cursor="Hand"/>
+                    <Button Content="Products" Command="{Binding ProductCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black"/>
+                    <Button Content="Favorites" Command="{Binding FavoriteCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black"/>
                 </StackPanel>
-                <Button Content="Log out" Command="{Binding LogOutCommand}" Width="200" HorizontalAlignment="Center" VerticalAlignment="Bottom" BorderBrush="#8408c7" Background="#c678f0" Foreground="Black" Cursor="Hand"/>
+                <Button Content="Log out" Command="{Binding LogOutCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black" Cursor="Hand"/>
             </StackPanel>
             <Grid Grid.Column="1">
                 <Grid.Resources>

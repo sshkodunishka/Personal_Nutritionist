@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataLayer\Configuration\" />
+    <None Remove="Image\aaa.png" />
+    <None Remove="Image\ddd.png" />
+    <None Remove="Image\home.png" />
+    <None Remove="Image\image.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +31,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\aaa.png">
+      <CustomToolNamespace>aaa.png</CustomToolNamespace>
+    </Resource>
+    <Resource Include="Image\ddd.png" />
+    <Resource Include="Image\home.png" />
+    <Resource Include="Image\image.png" />
   </ItemGroup>
 
 </Project>

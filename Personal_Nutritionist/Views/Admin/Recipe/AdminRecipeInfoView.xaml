@@ -25,7 +25,7 @@
                     <TextBlock Text="{Binding Recipe.User.Name, StringFormat=Name of creator: {0}}"
                                Style="{StaticResource MaterialDesignBody2TextBlock}"
                                FontSize="16"/>
-                <TextBlock FontSize="14" Text="Description:" />
+                <TextBlock FontSize="20" Text="Description:"  Foreground="#29023d"/>
                 <TextBlock Text="{Binding Recipe.Description}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="12"/>
                 </StackPanel>
         </Grid>

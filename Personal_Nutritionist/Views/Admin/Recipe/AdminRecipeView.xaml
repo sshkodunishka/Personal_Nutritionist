@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Recipes" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="Recipes" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#29023d" FontSize="22"/>
             <ListView x:Name="linksListView" Grid.Row="1" SelectedItem="{Binding SelectedRecipe}"
                       ItemsSource="{Binding Recipes}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>
@@ -42,7 +42,7 @@
                         <GridViewColumn Width="120">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button  BorderBrush="#8408c7" Background="#c678f0" 
+                                    <Button  BorderBrush="#180124" Background="#c678f0" 
                                              x:Name="Delete"
                                             Content="Delete"
                                             Command="{Binding Path=DataContext.AdminDeleteRecipe,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
@@ -65,7 +65,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,35" 
-                BorderBrush="#8408c7" Background="#c678f0" 
+                BorderBrush="#180124" Background="#c678f0" 
                 Foreground="Black"
                 Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
         </Button>

@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Recipes" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#4d5680" FontSize="22"/>
+            <TextBlock Text="Recipes" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="35" Foreground="#29023d" FontSize="22"/>
             <ListView x:Name="linksListView" Grid.Row="1" SelectedItem="{Binding SelectedRecipe}"
                       ItemsSource="{Binding Recipes}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.ItemContainerStyle>
@@ -33,8 +33,8 @@
                         </Style.Triggers>
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
+                <ListView.View >
+                    <GridView >
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Name}">Recipe name</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Description}">Recipe Description</GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Recipe.Calories}">Calories</GridViewColumn>
@@ -43,12 +43,14 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                    <Button  x:Name="Like"
+                                        <Button  x:Name="Like"
                                             Content="Like"
+                                                BorderBrush="#180124" Background="#c678f0" 
                                              Visibility="{Binding isNotFavorite, Converter={StaticResource BoolToVis}, FallbackValue=Hidden}"
                                             Command="{Binding Path=DataContext.AddFavoriteCommand,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
-                                    <Button  x:Name="Dislike"
+                                        <Button  x:Name="Dislike"
                                             Content="Dislike"
+                                                BorderBrush="#180124" Background="#c678f0" 
                                              Visibility="{Binding isFavorite, Converter={StaticResource BoolToVis }, FallbackValue=Hidden}"
                                             Command="{Binding Path=DataContext.DeleteFavoriteCommand,  RelativeSource={RelativeSource AncestorType=ListView} }"/>
                                     </StackPanel>
@@ -71,7 +73,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 
                 Margin="0,35" 
-                BorderBrush="#8408c7" Background="#c678f0" 
+                BorderBrush="#180124" Background="#c678f0" 
                 Foreground="Black"
                 Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
         </Button>
