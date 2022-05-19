@@ -14,6 +14,7 @@ namespace Personal_Nutritionist.DataLayer
         public DbSet<Product> Products { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<AdminCountingCalories> AdminCountingCalories { get; set; }
+        public DbSet<AdminRecommendation> AdminRecommendations { get; set; }
 
         public Context()
         {
@@ -23,14 +24,22 @@ namespace Personal_Nutritionist.DataLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Server=адрес_сервера/localhost;Database=имя_базы_данных;User Id=логин;Password=пароль;
-            optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
-            //optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=KRISTINAS\SQLEXPRESS;Database=food;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=food;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AdminRecommendation>()
+               .HasOne(bc => bc.Recipe)
+               .WithMany(b => b.AdminRecommendations)
+               .HasForeignKey(bc => bc.RecipeId).OnDelete(DeleteBehavior.NoAction);
 
-            
+            modelBuilder.Entity<AdminRecommendation>()
+                .HasOne(bc => bc.User)
+                .WithMany(c => c.AdminRecommendations)
+                .HasForeignKey(bc => bc.UserId).OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<Favorites>()
                 .HasOne(bc => bc.Recipe)
                 .WithMany(b => b.Favorites)

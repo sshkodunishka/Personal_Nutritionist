@@ -31,6 +31,7 @@
                     <Button Content="Recipes" Command="{Binding RecipeCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black" Cursor="Hand"/>
                     <Button Content="Products" Command="{Binding ProductCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black"/>
                     <Button Content="Favorites" Command="{Binding FavoriteCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black"/>
+                    <Button Content="Recommendations" Command="{Binding RecommendationCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black"/>
                 </StackPanel>
                 <Button Content="Log out" Command="{Binding LogOutCommand}" Width="200" HorizontalAlignment="Center" BorderBrush="#180124" Background="#8408c7" Foreground="Black" Cursor="Hand"/>
             </StackPanel>
@@ -65,6 +66,9 @@
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:AddMealProduct}">
                         <views:AddMealProduct/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:AdminRecommendationsViewModel}">
+                        <views:UserRecommendationsUser/>
                     </DataTemplate>
                 </Grid.Resources>
                 <ContentControl Content= "{Binding CurrentPersonalViewModel}"/>

@@ -36,7 +36,7 @@ namespace Personal_Nutritionist.Command
 
                 var id = _viewModel.SelectedFavorite.FavoritesId;
                 _viewModel.Favorites = new ObservableCollection<Favorites>(
-                    _viewModel.Favorites.Where(f => f.RecipeId != _viewModel.SelectedFavorite.RecipeId));
+                    _viewModel.Favorites.Where(f => f.FavoritesId != _viewModel.SelectedFavorite.FavoritesId));
                 var food = favoriteRepository.FindById(id);
                 favoriteRepository.Remove(food);
 

@@ -115,12 +115,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                    <TextBlock 
+                <TextBlock 
                         FontSize="16"
                            HorizontalAlignment="Left"
                            Text="Admin counted calories:"
                            Grid.Column="0" />
-                    <TextBox Grid.Column="1" Margin="0 0 0 0" 
+                <TextBox Grid.Column="1" Margin="0 0 0 0" 
                                FontSize="16"
                                 
                                Width="100">
@@ -140,6 +140,16 @@
                              BorderBrush="#180124" Background="#c678f0" Cursor="Hand" />
 
             </Grid>
+            <Button Content="Recommendations" 
+                Command="{Binding NavigateAdminRecommendation}" 
+                Width="180" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Bottom" 
+                Margin="0,35" 
+                BorderBrush="#180124" Background="#c678f0" 
+                Foreground="Black"
+                Style="{StaticResource MaterialDesignRaisedButton}" Cursor="Hand" >
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

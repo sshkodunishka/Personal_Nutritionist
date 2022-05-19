@@ -111,6 +111,7 @@ namespace Personal_Nutritionist.ViewModels
         public ICommand OpenLunch { get; }
         public ICommand OpenDinner { get; }
         public ICommand ChangeAdminCalories { get; }
+        public ICommand NavigateAdminRecommendation { get; }
 
         public AdminUserInfoViewModel(PersonalNavigationStore personalNavigationStore, User selectedUser)
         {
@@ -227,6 +228,12 @@ namespace Personal_Nutritionist.ViewModels
                   }));
 
                 ChangeAdminCalories = new AdminChangeCalories(this);
+                NavigateAdminRecommendation = new PersonalNavigateCommand<AdminRecommendationViewModel>(
+                  new PersonalNavigationService<AdminRecommendationViewModel>(personalNavigationStore,
+                  () =>
+                  {
+                      return new AdminRecommendationViewModel(personalNavigationStore, User);
+                  }));
             }
             catch
             {

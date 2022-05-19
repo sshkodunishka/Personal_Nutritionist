@@ -33,17 +33,33 @@ namespace Personal_Nutritionist.Command
 
                 Repository<Recipe> recipeRepository = new Repository<Recipe>(context);
                 User user = Account.getInstance(null).CurrentUser;
-                Repository<MealFood> mealFoodRepository = new
-                    Repository<MealFood>(context);
+                Repository<MealFood> mealFoodRepository = new Repository<MealFood>(context);
+                Repository<Favorites> favRepo = new Repository<Favorites>(context);
+                Repository<AdminRecommendation> adminRecRepo = new Repository<AdminRecommendation>(context);
+                
                 var id = _viewModel.SelectedRecipe.RecipeId;
                 _viewModel.Recipes = new ObservableCollection<Recipe>(
                     _viewModel.Recipes.Where(f => f.RecipeId != _viewModel.SelectedRecipe.RecipeId));
                 var food = recipeRepository.FindById(id);
+                
                 var mealFoods = mealFoodRepository.Get(x => x.RecipeId == food.RecipeId).ToList();
                 mealFoods.ForEach(meal =>
                 {
                     mealFoodRepository.Remove(meal);
                 });
+
+                var favorites = favRepo.Get(x => x.RecipeId == food.RecipeId).ToList();
+                favorites.ForEach(meal =>
+                {
+                    favRepo.Remove(meal);
+                });
+                
+                var adminReccomendations = adminRecRepo.Get(x => x.RecipeId == food.RecipeId).ToList();
+                adminReccomendations.ForEach(meal =>
+                {
+                    adminRecRepo.Remove(meal);
+                });
+                
                 recipeRepository.Remove(food);
 
             }
