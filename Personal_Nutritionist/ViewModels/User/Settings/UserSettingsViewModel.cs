@@ -1,18 +1,16 @@
 ﻿using Personal_Nutritionist.Command;
 using Personal_Nutritionist.DataLayer;
-using Personal_Nutritionist.Services;
 using Personal_Nutritionist.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Personal_Nutritionist.ViewModels
 {
-    public class RegistrationViewModel : ViewModelBase
+    public class UserSettingsViewModel : ViewModelBase
     {
         private string _login;
         public string Login
@@ -68,7 +66,7 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-       
+
 
         private int _weight;
         public int Weight
@@ -92,82 +90,41 @@ namespace Personal_Nutritionist.ViewModels
             }
         }
 
-        SexType sexType = SexType.Female;
-
-        public SexType SexType
+        private bool _isOpen;
+        public bool IsOpen
         {
-            get { return sexType; }
+            get { return _isOpen; }
             set
             {
-                if (sexType == value)
+                if (_isOpen == value)
                     return;
-
-                sexType = value;
-                OnPropertyChanged("SexType");
-                OnPropertyChanged("IsFemale");
-                OnPropertyChanged("IsMale");
+                _isOpen = value;
+                OnPropertyChanged(nameof(IsOpen));
             }
         }
 
-        public bool IsFemale
-        {
-            get { return SexType == SexType.Female; }
-            set { SexType = value ? SexType.Female : SexType; }
-        }
+        public ICommand SaveChanges { get; }
 
-        public bool IsMale
-        {
-            get { return SexType == SexType.Male; }
-            set { SexType = value ? SexType.Male : SexType; }
-        }
-
-        
-        private string _error;
-        public string Error
-        {
-            get { return _error; }
-            set
-            {
-                if (_error == value)
-                    return;
-                _error = value;
-                OnPropertyChanged(nameof(Error));
-            }
-        }
-
-        private bool _isSended;
-        public bool IsSended
-        {
-            get { return _isSended; }
-            set
-            {
-                if (_isSended == value)
-                    return;
-                _isSended = value;
-                OnPropertyChanged(nameof(IsSended));
-            }
-        }
-
-        public ICommand ToProfile { get; }
-        public ICommand LoginCommand { get; }
-        public ICommand Ok { get; }
-
-        public RegistrationViewModel(NavigationStore navigationStore, PersonalNavigationStore personalNavigationStore)
+        public UserSettingsViewModel(PersonalNavigationStore personalNavigationStore)
         {
             try
             {
-                ToProfile = new RegistrationCommand(this, navigationStore, personalNavigationStore);
+                User currentUser = Account.getInstance(null).CurrentUser;
+                Login = currentUser.Login;
+                Password = currentUser.Password;
+                Name = currentUser.Name;
+                Surname = currentUser.Surname;
+                Age = currentUser.Age;
+                Weight = (int)currentUser.Weight;
+                Height = currentUser.Height;
 
-                LoginCommand = new NavigateCommand<LoginViewModel>(
-                    new NavigationService<LoginViewModel>(navigationStore,
-                    () => new LoginViewModel(navigationStore, personalNavigationStore)));
-                
+                SaveChanges = new SaveChanges(this);
+
             }
             catch
             {
-                MessageBox.Show("Can't register user");
+
             }
         }
-
     }
 }

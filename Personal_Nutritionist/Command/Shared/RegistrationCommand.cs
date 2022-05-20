@@ -40,9 +40,9 @@ namespace Personal_Nutritionist.Command
             {
                 Account.Dispose();
 
-                Context tutorent = new Context();
-                Repository<User> repository = new Repository<User>(tutorent);
-                Repository<Role> repositoryRole = new Repository<Role>(tutorent);
+                Context context = new Context();
+                Repository<User> repository = new Repository<User>(context);
+                Repository<Role> repositoryRole = new Repository<Role>(context);
                 User user = new User();
 
                 if (repository.Get(x => x.Login == _viewModel.Login).Any())

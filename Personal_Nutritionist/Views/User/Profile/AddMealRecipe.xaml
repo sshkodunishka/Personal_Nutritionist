@@ -43,14 +43,14 @@
                 </ListView.View>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
-                        <i:InvokeCommandAction Command="{Binding DataContext.AddRecipeRecomendation, ElementName= linksListView}" 
+                        <i:InvokeCommandAction Command="{Binding DataContext.AddMealRecipeCommand, ElementName= linksListView}" 
                                                CommandParameter="{Binding SelectedItem, ElementName=linksListView}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListView>
         </Grid>
         <Button Content="Back" 
-                Command="{Binding BackToRecommendation}" 
+                Command="{Binding BackToChangeMeal}" 
                 Width="180" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 

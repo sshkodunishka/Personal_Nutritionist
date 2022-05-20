@@ -235,7 +235,7 @@ namespace Personal_Nutritionist.Command
                     }
                     else
                     {
-                        _admin_viewModel.CaloriesLeft =(int)( k5 + k6 * _admin_viewModel.User.Weight + k7 * _admin_viewModel.User.Height - k8 * _admin_viewModel.User.Age - (float)_admin_viewModel.TotalCalories);
+                        _admin_viewModel.CaloriesLeft = (int)( k5 + k6 * _admin_viewModel.User.Weight + k7 * _admin_viewModel.User.Height - k8 * _admin_viewModel.User.Age - (float)_admin_viewModel.TotalCalories);
 
                     }
                 }

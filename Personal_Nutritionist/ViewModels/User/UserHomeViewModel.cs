@@ -24,6 +24,7 @@ namespace Personal_Nutritionist.ViewModels
         public ICommand FavoriteCommand { get; }
         public ICommand RecommendationCommand { get; }
         public ICommand LogOutCommand { get; }
+        public ICommand SettingsCommand { get; }
 
         public UserHomeViewModel(PersonalNavigationStore personalNavigationStore, NavigationStore navigationStore)
         {
@@ -51,6 +52,10 @@ namespace Personal_Nutritionist.ViewModels
                 RecommendationCommand = new PersonalNavigateCommand<AdminRecommendationsViewModel>(
                     new PersonalNavigationService<AdminRecommendationsViewModel>(personalNavigationStore,
                     () => new AdminRecommendationsViewModel(personalNavigationStore)));
+
+                SettingsCommand = new PersonalNavigateCommand<UserSettingsViewModel>(
+                   new PersonalNavigationService<UserSettingsViewModel>(personalNavigationStore,
+                   () => new UserSettingsViewModel(personalNavigationStore)));
 
 
                 LogOutCommand = new LogOutCommand( personalNavigationStore, navigationStore);

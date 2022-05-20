@@ -32,6 +32,17 @@ namespace Personal_Nutritionist.DataLayer
         public ICollection<MealHistory> MealHistories { get; set; }
 
         public User() { }
+        public User(string login, string password, string name, string surname, int age, int weight, int height)
+        {
+            Login = login;
+            Password = password;
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Weight = weight;
+            Height = height;
+        }
+
 
         public User(string login, string password, string name, string surname, int age, int roleId)
         {
@@ -43,7 +54,7 @@ namespace Personal_Nutritionist.DataLayer
             RoleId = roleId;
         }
 
-        public User(string login, string password, string name, string surname, float weight, int age, int roleId, int height, SexType sex)
+        public User(string login, string password, string name, string surname, int weight, int age, int roleId, int height, SexType sex)
         {
             Login = login;
             Password = password;

@@ -50,7 +50,7 @@
             </ListView>
         </Grid>
         <Button Content="Back" 
-                Command="{Binding BackToChangeMeal}" 
+                Command="{Binding BackToRecommendation}" 
                 Width="180" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Bottom" 

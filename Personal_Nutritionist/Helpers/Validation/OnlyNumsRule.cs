@@ -17,9 +17,9 @@ namespace Personal_Nutritionist.Helpers.Validation
             try
             {
                 string charString = value as string;
-                if (!Regex.Match(charString, "^([1-9][0-9]?)$").Success)
+                if (!Regex.Match(charString, "^([1-9][0-9][0-9]?)$").Success)
                 {
-                    return new ValidationResult(false, $"Field can only contain positive number between 1 and 99");
+                    return new ValidationResult(false, $"Field can only contain positive number between 1 and 999");
                 }
 
                 return ValidationResult.ValidResult;
