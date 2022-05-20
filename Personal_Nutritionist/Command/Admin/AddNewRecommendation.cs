@@ -41,7 +41,7 @@ namespace Personal_Nutritionist.Command
 
             catch
             {
-                MessageBox.Show("Can't delete selected meal");
+                MessageBox.Show("Can't add recommendation");
             }
         }
     }

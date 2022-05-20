@@ -46,7 +46,7 @@ namespace Personal_Nutritionist.ViewModels
             }
             catch
             {
-                MessageBox.Show("Can't add recipe");
+                MessageBox.Show("Can't add product");
             }
         }
     }

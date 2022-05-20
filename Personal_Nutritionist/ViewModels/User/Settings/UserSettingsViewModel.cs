@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Personal_Nutritionist.ViewModels
@@ -123,8 +124,9 @@ namespace Personal_Nutritionist.ViewModels
             }
             catch
             {
-
+                MessageBox.Show("Can't see all datas");
             }
+        
         }
     }
 }

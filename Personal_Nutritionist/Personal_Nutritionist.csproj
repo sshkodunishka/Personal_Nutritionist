@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Image\aaa.png" />
     <None Remove="Image\ddd.png" />
     <None Remove="Image\home.png" />
     <None Remove="Image\image.png" />
@@ -34,9 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Image\aaa.png">
-      <CustomToolNamespace>aaa.png</CustomToolNamespace>
-    </Resource>
     <Resource Include="Image\ddd.png" />
     <Resource Include="Image\home.png" />
     <Resource Include="Image\image.png" />

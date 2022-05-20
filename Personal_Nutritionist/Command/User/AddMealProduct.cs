@@ -60,7 +60,7 @@ namespace Personal_Nutritionist.Command
             }
             catch
             {
-                MessageBox.Show("Error while adding meal recipe");
+                MessageBox.Show("Error while adding meal product");
             }
         }
     }

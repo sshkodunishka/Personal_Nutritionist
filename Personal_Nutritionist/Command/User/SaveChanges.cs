@@ -57,7 +57,7 @@ namespace Personal_Nutritionist.Command
             }
             catch
             {
-                MessageBox.Show("Data cannot be updated");
+                MessageBox.Show("Data cannot be saved");
             }
         }
     }

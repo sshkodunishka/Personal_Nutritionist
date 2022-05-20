@@ -56,7 +56,7 @@ namespace Personal_Nutritionist.Command
 
             catch
             {
-                MessageBox.Show("Can't delete selected meal");
+                MessageBox.Show("Error while adding favorites meal");
             }
         }
     }

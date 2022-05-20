@@ -55,7 +55,7 @@ namespace Personal_Nutritionist.Command
             }
             catch
             {
-                MessageBox.Show("Can't add course");
+                MessageBox.Show("Can't add recipe");
             }
         }
 

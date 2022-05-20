@@ -62,7 +62,7 @@ namespace Personal_Nutritionist.ViewModels
             }
             catch
             {
-                MessageBox.Show("Can't load student home page");
+                MessageBox.Show("Can't load user home page");
             }
         }
     }
